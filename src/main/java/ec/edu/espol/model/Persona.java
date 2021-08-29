@@ -111,10 +111,5 @@ public class Persona implements Serializable{
     public void setRol(Rol rol) {
         this.rol = rol;
     }
-    
-    
-    
-    
-    
-    
+   
 }

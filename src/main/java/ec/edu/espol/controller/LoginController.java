@@ -5,7 +5,7 @@
  */
 package ec.edu.espol.controller;
 
-import ec.edu.espol.model.Usuario;
+import ec.edu.espol.model.Persona;
 import ec.edu.espol.vendedorcarrosg5.App;
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +28,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class LoginController implements Initializable {
     
-    ArrayList<Usuario> usuarios;
+    ArrayList<Persona> usuarios;
 
     @FXML
     private Button btnIni;
@@ -54,8 +54,8 @@ public class LoginController implements Initializable {
         RegistroController pg = fxmlpagina.getController();
         String core = correo.getText();
         
-        for(Usuario u: usuarios){
-            if(!u.getCorreo_electronico().equals(correo)){
+        for(Persona u: usuarios){
+            if(!u.getCorreo().equals(correo)){
                 Alert a = new Alert(AlertType.ERROR,"Usted no esta registrado");
                 a.show();
             } 

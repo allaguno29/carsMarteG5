@@ -1,6 +1,6 @@
 package ec.edu.espol.vendedorcarrosg5;
 
-import ec.edu.espol.model.Usuario;
+import ec.edu.espol.model.Persona;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import javafx.application.Application;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class App extends Application {
     
-    private static ArrayList<Usuario> usuarios;
+    private static ArrayList<Persona> usuarios;
     
     public static void serializar(String ruta) {
         ObjectOutputStream escritor = null;
@@ -32,20 +32,20 @@ public class App extends Application {
         }
     }
 
-    public static ArrayList<Usuario> deserializar(String ruta) {
+    public static ArrayList<Persona> deserializar(String ruta) {
         ObjectInputStream lector = null;
         try {
             lector = new ObjectInputStream(new FileInputStream(ruta));
-            ArrayList<Usuario> usuarios = (ArrayList<Usuario>) lector.readObject();
+            ArrayList<Persona> usuarios = (ArrayList<Persona>) lector.readObject();
             lector.close();
             return usuarios;
         } catch (Exception ex) {
             System.out.println("DEVUELVE NUEVO");
-            return new ArrayList<Usuario>();
+            return new ArrayList<Persona>();
         }
     }
     
-    public static void agregarEstudiante(Usuario e) {
+    public static void agregarEstudiante(Persona e) {
         usuarios.add(e);
     }
 
@@ -58,7 +58,7 @@ public class App extends Application {
         stage.show();
     }
     
-    public static void agregarUsuario(Usuario u) {
+    public static void agregarUsuario(Persona u) {
         usuarios.add(u);
     }
 

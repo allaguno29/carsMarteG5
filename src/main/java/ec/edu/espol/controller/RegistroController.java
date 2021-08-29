@@ -6,9 +6,8 @@
 package ec.edu.espol.controller;
 
 import ec.edu.espol.model.Comprador;
-import ec.edu.espol.model.Usuario;
-import ec.edu.espol.model.Vendedor;
-import ec.edu.espol.util.Util;
+import ec.edu.espol.model.Persona;
+import ec.edu.espol.util.Rol;
 import ec.edu.espol.vendedorcarrosg5.App;
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +30,8 @@ import javafx.scene.input.MouseEvent;
  */
 public class RegistroController implements Initializable {
    
-    ArrayList<Usuario> usuarios;
+    ArrayList<Persona> usuarios;
+    Rol rol;
 
     @FXML
     private Button btnGuar;
@@ -68,9 +68,11 @@ public class RegistroController implements Initializable {
         String correo = corrElect.getText();   
         String cla = clave.getText();
         
+        //falta guardar en sr
         if(!nomb.getText().isEmpty() ||!apell.getText().isEmpty()||!Org.getText().isEmpty()||!corrElect.getText().isEmpty()||!clave.getText().isEmpty() ){  
         if (chckV.isSelected() && !chckC.isSelected()) {
-            Vendedor ingresado = new Vendedor(nombre, apellido, organizacion, correo, cla);
+            
+            Persona ingresado = new Persona(nombre, apellido, correo, organizacion, cla, rol);
             RegistradoConfirmado();
             FXMLLoader fxmllogin = App.loadFXMPagina("Login");
             App.setRoot(fxmllogin);
@@ -78,7 +80,8 @@ public class RegistroController implements Initializable {
         }
         
         if (chckC.isSelected() && !chckV.isSelected()) {
-            Comprador ingresado = new Comprador(nombre, apellido, organizacion, correo, cla);
+            
+            Persona ingresado = new Persona(nombre, apellido, correo, organizacion, cla, rol);
             RegistradoConfirmado();
             FXMLLoader fxmllogin = App.loadFXMPagina("Login");
             App.setRoot(fxmllogin);
@@ -87,8 +90,9 @@ public class RegistroController implements Initializable {
         }
         
         if (chckV.isSelected() && chckC.isSelected()) {
+            
             RegistradoConfirmado();
-            Vendedor ingresado = new Vendedor(nombre, apellido, organizacion, correo, cla);
+            Persona ingresado = new Persona(nombre, apellido, correo, organizacion, cla, rol);
             Comprador ingresado1 = new Comprador(nombre, apellido, organizacion, correo, cla);
             FXMLLoader fxmllogin = App.loadFXMPagina("Login");
             App.setRoot(fxmllogin);

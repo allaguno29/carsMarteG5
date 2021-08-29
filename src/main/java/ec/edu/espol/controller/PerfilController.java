@@ -50,9 +50,7 @@ public class PerfilController implements Initializable {
         lblCor.setText(correo);
         lblCla.setText(clav);
         lblRol.setText(rol);
-        
-        
-    
+
     }
 
    /* FXMLLoader fxmlperfil = App.loadFXMRegister("Perfil");
