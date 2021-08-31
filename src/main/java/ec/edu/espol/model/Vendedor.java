@@ -17,6 +17,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
 import javax.mail.MessagingException;
 
 /**
@@ -26,48 +27,56 @@ import javax.mail.MessagingException;
 public class Vendedor extends Persona implements Serializable{
 
     private static final long serialVersionUID = -5892814637268092625L;
-    public Vendedor(String nombres, String apellidos, String correo, String organizacion, String clave) {
-        super(nombres, apellidos, correo, organizacion, clave, Rol.VENDEDOR);
+    public Vendedor(String nombres, String apellidos, String correo, String organizacion, String clave, Rol rol) {
+        super(nombres, apellidos, correo, organizacion, clave, rol);
         
     }
 
     //FUNCION LISTA
-    public static void RegistarVendedor(Scanner sc)
+    public static boolean RegistrarVendedor(String nombre, String apellido, String org, String correo, String clav, Rol rol)
     {
-     
-        System.out.println("Ingrese sus nombres: ");
-        String nombre = sc.nextLine();
-        System.out.println("Ingrese sus Apellidos: ");
-        String apellidos = sc.nextLine();
-        System.out.println("Ingrese la Organizacion donde trabaja: ");
-        String organizacion = sc.nextLine();
-        System.out.println("Ingrese su correo electronico: ");
-        String correo = sc.nextLine();
+        String nombreU = nombre;
+        String apellidos = apellido;
+        String organizacion = org;
+        String correoU = correo;
+        Rol rolU = rol;
         
-        while (!Util.correoEsValido(correo)) 
+        if(!Util.correoEsValido(correo)) 
         {
-            System.out.println("Ingrese correo electronico valido: ");
-            correo = sc.nextLine();    
-        }
-        
-        
-        while (Util.correoExiste("usuarios.ser", correo)) 
-        {
-            System.out.println("El correo ingresado ya esta registrado, ingrese correo electronico valido: ");
-            correo = sc.nextLine();
             
+            String msg = String.format("¡Correo Electronico invalido!%n  Formato válido: nombre@organizacion.com");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setTitle("Error en Correo");
+            alert.setContentText(msg);
+            alert.showAndWait();
+            return false;
         }
-        System.out.println("Ingrese su clave de acceso: ");
-        String contrasena = sc.nextLine();
-        try
+        
+        
+        if(Util.correoExiste("usuarios.ser", correo)) 
         {
-            Vendedor v = new Vendedor(nombre, apellidos, correo, organizacion, contrasena);
-            v.saveFile("usuarios.ser");
+            String msg = String.format("El correo ingresado ya esta registrado, ingrese correo electronico distinto.");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setTitle("Error en Correo");
+            alert.setContentText(msg);
+            alert.showAndWait();
+            return false;
         }
-        catch(CorreoException e)
-        {
-            System.out.println("El correo electronico no es valido. Por favor intente de nuevo");
-        }
+        
+        String contrasena = clav;
+ 
+        Vendedor v = new Vendedor(nombreU, apellidos, correoU, organizacion, contrasena, rolU);
+        v.saveFile("usuarios.ser");
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Bienvenido nuevo Usuario");
+        alert.setContentText("Usted ha sido registrado con exito");
+        alert.showAndWait();
+        return true;
+
     }
 
     //FUNCION LISTA Y COMPROBADA
@@ -89,7 +98,8 @@ public class Vendedor extends Persona implements Serializable{
         }
         catch(IOException ioe)
         {
-            ioe.printStackTrace();
+            System.out.println("EOF alcanzado, archivo creado");
+            //ioe.printStackTrace();
         }
     }
 
@@ -228,7 +238,9 @@ public class Vendedor extends Persona implements Serializable{
     @Override
     public String toString()
     {
-        return "Vendedor| Nombres: " + this.nombres + " Apellidos: " + this.apellidos + " Correo electronico: " + this.correo + " Organizacion: " + this.organizacion + "\n";
+        return String.format("Vendedor%nNombres: %s%nApellidos: %s%nRol: %s%nCorreo: %s%nOrganizacion: %s%nClave: %sn",
+                this.nombres, this.apellidos, (this.getRol().equals(Rol.VENDEDOR))? "Vendedor":"Ambos", 
+                this.correo, this.organizacion, this.clave);
     }
 
 }

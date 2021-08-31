@@ -6,6 +6,7 @@
 package ec.edu.espol.controller;
 
 import ec.edu.espol.model.Persona;
+import ec.edu.espol.util.Util;
 import ec.edu.espol.vendedorcarrosg5.App;
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +29,9 @@ import javafx.scene.input.MouseEvent;
  */
 public class LoginController implements Initializable {
     
-    ArrayList<Persona> usuarios;
+    //ArrayList<Persona> usuarios;
+    
+    private String personasFile = "usuarios.ser";
 
     @FXML
     private Button btnIni;
@@ -43,23 +46,29 @@ public class LoginController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb) 
+    {
+       
+
+        //usuarios = Util.readPersonasFile(personasFile);
+       //System.out.println(usuarios);
     }    
 
     @FXML
-    private void cambioUsuario(MouseEvent event) throws IOException {
-        FXMLLoader fxmlpagina = App.loadFXMRegister("PaginaPrincipal");
-        App.setRoot(fxmlpagina);
-        RegistroController pg = fxmlpagina.getController();
-        String core = correo.getText();
+    private void cambioUsuario(MouseEvent event) throws IOException 
+    {
         
-        for(Persona u: usuarios){
-            if(!u.getCorreo().equals(correo)){
-                Alert a = new Alert(AlertType.ERROR,"Usted no esta registrado");
-                a.show();
-            } 
-    }
+        String correoObtenido = correo.getText();
+        String claveObtenida = pass.getText();
+        
+        if(Util.credencialEsValida(personasFile, correoObtenido, claveObtenida))
+        {
+
+            FXMLLoader fxmlpagina = App.loadFXMRegister("PaginaPrincipal");
+            App.setRoot(fxmlpagina);
+            PaginaPrincipalController ppg = fxmlpagina.getController();   
+        }
+ 
     }
 
     @FXML

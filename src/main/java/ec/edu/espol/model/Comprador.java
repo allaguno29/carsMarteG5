@@ -17,6 +17,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -31,47 +32,51 @@ public class Comprador extends Persona implements Serializable{
     }
     
     //FUNCION LISTA PERO SERA MODIFICADA EN EL JAVAFX
-    public static void registarComprador(Scanner sc)
+    public static boolean registrarComprador(String nombre, String apellido, 
+            String org, String correo, String clav)
     {
-        //Esto va a cambiar
-        System.out.println("Ingrese sus nombres: ");
-        String nombre = sc.nextLine();
-        System.out.println("Ingrese sus Apellidos: ");
-        String apellidos = sc.nextLine();
-        System.out.println("Ingrese la Organizacion donde trabaja: ");
-        String organizacion = sc.nextLine();
-        System.out.println("Ingrese su correo electronico: ");
-        String correo = sc.nextLine();
-        while (!Util.correoEsValido(correo))
-        {
-            System.out.println("Ingrese correo electronico valido: ");
-            correo = sc.nextLine();
-        }
+        String nombreU = nombre;
+        String apellidos = apellido;
+        String organizacion = org;
+        String correoU = correo;
+       
         
-        while (Util.correoExiste("usuarios.ser", correo))
+        if(!Util.correoEsValido(correo)) 
         {
-            System.out.println("El correo ingresado ya esta registrado, ingrese otro correo valido: ");
-            correo = sc.nextLine();
             
+            String msg = String.format("¡Correo Electronico invalido!%n  Formato válido: nombre@organizacion.com");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setTitle("Error en Correo");
+            alert.setContentText(msg);
+            alert.showAndWait();
+            return false;
         }
         
-        //Modificar con los campos del javaFX
-        System.out.println("Ingrese su clave de acceso: ");
-        String contrasena = sc.nextLine();
-
         
-        
-        System.out.println("Comprador registrado correctamente");
-        
-        try
+        if(Util.correoExiste("usuarios.ser", correo)) 
         {
-            Comprador c = new Comprador(nombre,apellidos,correo,organizacion,contrasena);
-            c.saveFile("usuarios.ser");
+            String msg = String.format("El correo ingresado ya esta registrado, ingrese correo electronico distinto.");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setTitle("Error en Correo");
+            alert.setContentText(msg);
+            alert.showAndWait();
+            return false;
         }
-        catch(CorreoException e)
-        {
-            System.out.println("El correo electronico no es valido. Por favor intente de nuevo");
-        }
+        
+        String contrasena = clav;
+ 
+        Comprador c = new Comprador(nombreU, apellidos, correoU, organizacion, contrasena);
+        c.saveFile("usuarios.ser");
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Bienvenido nuevo Usuario");
+        alert.setContentText("Usted ha sido registrado con exito");
+        alert.showAndWait();
+        return true;
+        
     }
     
     //FUNCION LISTA COMPROBADA
@@ -333,8 +338,11 @@ public class Comprador extends Persona implements Serializable{
     }
             
     @Override
-    public String toString(){
-            return "Comprador| Nombres: "+this.nombres+" Apellidos: "+this.apellidos+" Correo electronico: "+this.correo+" Organizacion: "+this.organizacion + "\n";
+    public String toString()
+    {
+
+            return String.format("Comprador%nNombres: %s%nApellidos: %s%nRol: %s%nCorreo: %s%nOrganizacion: %s%n", 
+                    this.nombres, this.apellidos, this.rol, this.correo, this.organizacion);
         }         
     }
 

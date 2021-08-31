@@ -6,8 +6,11 @@
 package ec.edu.espol.controller;
 
 import ec.edu.espol.model.Comprador;
+import ec.edu.espol.model.CorreoException;
 import ec.edu.espol.model.Persona;
+import ec.edu.espol.model.Vendedor;
 import ec.edu.espol.util.Rol;
+import ec.edu.espol.util.Util;
 import ec.edu.espol.vendedorcarrosg5.App;
 import java.io.IOException;
 import java.net.URL;
@@ -32,7 +35,8 @@ public class RegistroController implements Initializable {
    
     ArrayList<Persona> usuarios;
     Rol rol;
-
+    
+    private String personasFile = "usuarios.ser";
     @FXML
     private Button btnGuar;
     @FXML
@@ -43,7 +47,7 @@ public class RegistroController implements Initializable {
     private TextField Org;
     @FXML
     private TextField corrElect;
-    @FXML
+    @FXML 
     private PasswordField clave;
     @FXML
     private CheckBox chckV;
@@ -57,6 +61,9 @@ public class RegistroController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        //Descomentar para ver en consola todos los usuarios ya registrados;
+        //System.out.println(Util.readPersonasFile(personasFile));
     }    
 
     @FXML
@@ -68,62 +75,72 @@ public class RegistroController implements Initializable {
         String correo = corrElect.getText();   
         String cla = clave.getText();
         
-        //falta guardar en sr
-        if(!nomb.getText().isEmpty() ||!apell.getText().isEmpty()||!Org.getText().isEmpty()||!corrElect.getText().isEmpty()||!clave.getText().isEmpty() ){  
-        if (chckV.isSelected() && !chckC.isSelected()) {
-            
-            Persona ingresado = new Persona(nombre, apellido, correo, organizacion, cla, rol);
-            RegistradoConfirmado();
-            FXMLLoader fxmllogin = App.loadFXMPagina("Login");
-            App.setRoot(fxmllogin);
-            RegistroController rc = fxmllogin.getController();   
+        if(!nomb.getText().isEmpty() && !apell.getText().isEmpty() &&
+                !Org.getText().isEmpty() && !corrElect.getText().isEmpty() &&
+                !clave.getText().isEmpty())
+        {  
+            if (chckV.isSelected() && !chckC.isSelected()) 
+            {
+
+               //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
+                if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.VENDEDOR))
+                {
+                    FXMLLoader fxmllogin = App.loadFXMPagina("Login");
+                    App.setRoot(fxmllogin);
+                    LoginController lc = fxmllogin.getController();   
+                }
+                
+            }
+
+            if (chckC.isSelected() && !chckV.isSelected()) 
+            {
+                //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
+                if(Comprador.registrarComprador(nombre, apellido, organizacion, correo, cla))
+                {
+                    FXMLLoader fxmllogin = App.loadFXMPagina("Login");
+                    App.setRoot(fxmllogin);
+                    LoginController lc = fxmllogin.getController();   
+                }
+
+            }
+
+            if (chckV.isSelected() && chckC.isSelected()) 
+            {
+
+                
+                //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
+                if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.AMBOS))
+                {
+                    FXMLLoader fxmllogin = App.loadFXMPagina("Login");
+                    App.setRoot(fxmllogin);
+                    LoginController lc = fxmllogin.getController();   
+                }
+                
+                
+                
+            }
         }
-        
-        if (chckC.isSelected() && !chckV.isSelected()) {
-            
-            Persona ingresado = new Persona(nombre, apellido, correo, organizacion, cla, rol);
-            RegistradoConfirmado();
-            FXMLLoader fxmllogin = App.loadFXMPagina("Login");
-            App.setRoot(fxmllogin);
-            RegistroController rc = fxmllogin.getController();
-            
+        else if (!chckV.isSelected() && !chckC.isSelected()) 
+        {
+            System.out.println("Rol vacio");
+            mostrarRolNoEleg();
         }
-        
-        if (chckV.isSelected() && chckC.isSelected()) {
-            
-            RegistradoConfirmado();
-            Persona ingresado = new Persona(nombre, apellido, correo, organizacion, cla, rol);
-            Comprador ingresado1 = new Comprador(nombre, apellido, organizacion, correo, cla);
-            FXMLLoader fxmllogin = App.loadFXMPagina("Login");
-            App.setRoot(fxmllogin);
-            RegistroController rc = fxmllogin.getController();  
-        }
-        }else{
-            
+        else
+        {    
             mostrarLlenar();
         }
         
-        if (!chckV.isSelected() && !chckC.isSelected()) {
-            mostrarAlertWarning();
-        }
+        
         
     }
-    private void mostrarAlertWarning() {
+    private void mostrarRolNoEleg() 
+    {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setHeaderText(null);
         alert.setTitle("Campo Incompleto");
         alert.setContentText("Por favor seleccione un rol");
         alert.showAndWait();
-    }
-    
-    private void RegistradoConfirmado() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Bienvenido nuevo Usuario");
-        alert.setContentText("Usted ha sido registrado con exito");
-        alert.showAndWait();
-    }
-    
+    } 
    private void mostrarLlenar() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setHeaderText(null);

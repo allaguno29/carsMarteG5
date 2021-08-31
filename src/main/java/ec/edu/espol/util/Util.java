@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
         
         
 import java.util.*;
+import javafx.scene.control.Alert;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
@@ -32,6 +33,7 @@ import javax.activation.*;
  */
 public class Util {
     
+    //public final String stylesheet = "style/style.css"; 
     
     public static boolean placaEsValida(String nomfile,String placa)
     {
@@ -92,13 +94,23 @@ public class Util {
         }
         catch(IOException e)
         {
-            e.printStackTrace();
+            System.out.println("Se encontro EOF");
+            //e.printStackTrace();
         } 
         catch (ClassNotFoundException ex) 
         {
             ex.printStackTrace();
         }
         return listaPersonas;
+    }
+    
+    public static void mostrarWarning(String title, String msg)
+    {
+        Alert a = new Alert(Alert.AlertType.WARNING);
+        a.setHeaderText(null);
+        a.setTitle(title);
+        a.setContentText(msg);
+        a.show();
     }
     
     public static boolean credencialEsValida(String filename, String correo, String contrasenia)
@@ -118,12 +130,12 @@ public class Util {
                 }
                 else
                 {
-                    System.out.println("Clave incorrecta");
+                    mostrarWarning("Credencial inválida","Clave incorrecta");
                     return false;
                 }
             }
         }
-        System.out.println("No existe el correo ingresado");
+        mostrarWarning("Credencial inválida","No existe el correo ingresado");
         return false;
     }
     

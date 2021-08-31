@@ -1,0 +1,20 @@
+.separator {
+    -fx-background-color: #c4bebe;
+}
+#navigator {
+    -fx-background-color:#212020;
+}
+
+#navigator .button {
+    -fx-background-color:#212020;
+    -fx-text-fill: #c4bebe;
+}
+
+#navigator .button:hover{
+    -fx-background-color: #736d6d;
+}
+
+#navigator .button:armed{
+    -fx-background-color: #a3a0a0;
+}
+

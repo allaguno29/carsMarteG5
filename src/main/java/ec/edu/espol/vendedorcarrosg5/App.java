@@ -20,6 +20,9 @@ import java.util.ArrayList;
 public class App extends Application {
     
     private static ArrayList<Persona> usuarios;
+    private String css = getClass().getResource("style.css").toExternalForm(); 
+    
+    /* Estas funciones ya estan en el paquete Util
     
     public static void serializar(String ruta) {
         ObjectOutputStream escritor = null;
@@ -44,16 +47,20 @@ public class App extends Application {
             return new ArrayList<Persona>();
         }
     }
-    
+        
     public static void agregarEstudiante(Persona e) {
         usuarios.add(e);
     }
+    
+*/
+
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Login"));
+        scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.show();
     }
@@ -100,15 +107,7 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
-        //ArrayList<Usuario> usuarios = new ArrayList<>();
-        //usuarios.add(new Usuario(01,"Ariana Naomi", "Llaguno Mora","Brahma","arianallagunomora@gmail.com","sadsASASDS283"));
-        //usuarios.add(new Usuario(02,"Karin Helen", "Macias Garzon","CocaCola","karinmacias26@gmail.com","sfgdgd45"));
-        //usuarios.add(new Usuario(03,"Domenica Anahi", "Rendon Cisneros","Pepsi","domerendon12@gmail.com","afsdfdsd23"));
-        //usuarios.add(new Usuario(04,"Karen Luciana", "Vaca Tacuri","Hyundai","luciatacuri10@gmail.com","dsda34"));
-        //usuarios.add(new Usuario(05,"Anabelle Carola", "Mora Vaca","Ford","anamora08@gmail.com","fgfgjgjg32"));
-        //Usuario.guardarUsuarios(usuarios, "usuarios.ser");
-    //ArrayList<Usuario> usuarios = Usuario.leerUsuarios("usuarios.ser");
-    //System.out.println(usuarios);
+        
     }
 
 }
