@@ -15,29 +15,24 @@
    <children>
       <VBox id="navigator" prefHeight="304.0" prefWidth="180.0">
          <children>
-            <ImageView fitHeight="190.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btnImage" fitHeight="190.0" fitWidth="180.0" onMouseClicked="#mostrarPerfil" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../img/default.jpg" />
                </image>
             </ImageView>
             <Separator maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.5" prefWidth="200.0" />
-            <Button alignment="BASELINE_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Registrar un nuevo vendedor" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+            <Button fx:id="btnVendedor" alignment="BASELINE_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#mostrarVendedor" prefHeight="45.0" prefWidth="180.0" text="Vendedor" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
             <Separator maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.5" prefWidth="200.0" />
-            <Button alignment="BASELINE_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Ingresar un nuevo vehículo" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+            <Button fx:id="btnComprador" alignment="BASELINE_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#mostrarComprador" prefHeight="45.0" prefWidth="180.0" text="Comprador" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
             <Separator maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.5" prefWidth="200.0" />
-            <Button alignment="BASELINE_CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" text="Aceptar oferta" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
             <Separator maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.5" prefWidth="200.0" />
             <Button fx:id="salirbtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#salir" prefHeight="45.0" prefWidth="180.0" text="Salir">
                <VBox.margin>
@@ -60,6 +55,9 @@
                      </BorderPane.margin>
                   </Text>
                </top>
+               <center>
+                  <VBox fx:id="Vcenter" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+               </center>
             </BorderPane>
          </center>
       </BorderPane>

@@ -85,8 +85,8 @@ public class RegistroController implements Initializable {
                //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
                 if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.VENDEDOR))
                 {
-                    FXMLLoader fxmllogin = App.loadFXMPagina("Login");
-                    App.setRoot(fxmllogin);
+                    FXMLLoader fxmllogin = App.loadFXMLogin("Login");
+                    App.setRootLogin(fxmllogin);
                     LoginController lc = fxmllogin.getController();   
                 }
                 
@@ -97,8 +97,8 @@ public class RegistroController implements Initializable {
                 //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
                 if(Comprador.registrarComprador(nombre, apellido, organizacion, correo, cla))
                 {
-                    FXMLLoader fxmllogin = App.loadFXMPagina("Login");
-                    App.setRoot(fxmllogin);
+                    FXMLLoader fxmllogin = App.loadFXMLogin("Login");
+                    App.setRootLogin(fxmllogin);
                     LoginController lc = fxmllogin.getController();   
                 }
 
@@ -111,13 +111,11 @@ public class RegistroController implements Initializable {
                 //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
                 if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.AMBOS))
                 {
-                    FXMLLoader fxmllogin = App.loadFXMPagina("Login");
-                    App.setRoot(fxmllogin);
-                    LoginController lc = fxmllogin.getController();   
+                    FXMLLoader fxmllogin = App.loadFXMLogin("Login");
+                    App.setRootLogin(fxmllogin);
+                    LoginController lc = fxmllogin.getController();    
                 }
-                
-                
-                
+                         
             }
         }
         else if (!chckV.isSelected() && !chckC.isSelected()) 

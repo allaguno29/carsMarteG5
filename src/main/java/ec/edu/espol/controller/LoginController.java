@@ -64,9 +64,9 @@ public class LoginController implements Initializable {
         if(Util.credencialEsValida(personasFile, correoObtenido, claveObtenida))
         {
 
-            FXMLLoader fxmlpagina = App.loadFXMRegister("PaginaPrincipal");
-            App.setRoot(fxmlpagina);
-            PaginaPrincipalController ppg = fxmlpagina.getController();   
+            FXMLLoader fxmlpagina = App.loadFXMPagina("PaginaPrincipal");
+            App.setRootPagina(fxmlpagina);
+            PaginaPrincipalController pg = fxmlpagina.getController();   
         }
  
     }
@@ -74,7 +74,7 @@ public class LoginController implements Initializable {
     @FXML
     private void CambioRegistro(MouseEvent event) throws IOException {
         FXMLLoader fxmlregister = App.loadFXMRegister("Registro");
-        App.setRoot(fxmlregister);
+        App.setRootRegister(fxmlregister);
         RegistroController rc = fxmlregister.getController();
         
     }

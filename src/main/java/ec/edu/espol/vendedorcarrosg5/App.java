@@ -73,29 +73,30 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
     
-    public static void setRootPa(FXMLLoader fxmllogin) throws IOException {
+    public static void setRootLogin(FXMLLoader fxmllogin) throws IOException {
         scene.setRoot(fxmllogin.load());
     }
     
-    public static void setRoot(FXMLLoader fxmlregister) throws IOException {
+    public static void setRootRegister(FXMLLoader fxmlregister) throws IOException {
         scene.setRoot(fxmlregister.load());
     }
     
-    public static void setRootP(FXMLLoader fxmlperfil) throws IOException {
-        scene.setRoot(fxmlperfil.load());
+    public static void setRootPagina(FXMLLoader fxmlpagina) throws IOException {
+        scene.setRoot(fxmlpagina.load());
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
     
-    public static FXMLLoader loadFXMRegister(String fxml) throws IOException {
+    public static FXMLLoader loadFXMLogin(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader;
     }
+
     
-    public static FXMLLoader loadFXMPerfil(String fxml) throws IOException {
+    public static FXMLLoader loadFXMRegister(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader;
     }
