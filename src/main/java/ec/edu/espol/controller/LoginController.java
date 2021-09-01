@@ -67,6 +67,7 @@ public class LoginController implements Initializable {
             FXMLLoader fxmlpagina = App.loadFXMPagina("PaginaPrincipal");
             App.setRootPagina(fxmlpagina);
             PaginaPrincipalController pg = fxmlpagina.getController();   
+            pg.setCorreoUser(correoObtenido);
         }
  
     }

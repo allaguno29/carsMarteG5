@@ -31,9 +31,10 @@ import javafx.scene.text.Text;
  */
 public class PaginaPrincipalController implements Initializable 
 {
-    ArrayList<Vendedor> vendedores;
-    ArrayList<Comprador> compradores;
-    ArrayList<Persona> personas;
+
+    private ArrayList<Persona> personas;
+    private Persona usuario;
+    private String correoUser;
     
 
     @FXML
@@ -61,6 +62,11 @@ public class PaginaPrincipalController implements Initializable
 //Lista de personas crear extraer usuarios
 // No lee a los compradores
 
+    }
+    
+    public void setCorreoUser(String correo)
+    {
+        this.correoUser = correo;
     }
     @FXML
     private void salir(MouseEvent event) 
