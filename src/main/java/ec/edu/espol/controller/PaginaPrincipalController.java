@@ -353,19 +353,133 @@ public class PaginaPrincipalController implements Initializable
     }
 
     @FXML
-    private void botonIngresarVehiculo(MouseEvent event) {
+    private void botonIngresarVehiculo(MouseEvent event) 
+    {
     }
 
     @FXML
-    private void botonAceptarOfertas(MouseEvent event) {
+    private void botonAceptarOfertas(MouseEvent event) 
+    {
     }
 
     @FXML
-    private void botonRegistrarComprador(MouseEvent event) {
+    private void botonRegistrarComprador(MouseEvent event) 
+    {
+        //////////////////////////////////////
+        double wrappingW = 80;
+        double spacing = 60;
+        VBox vbox= new VBox();
+        vbox.setAlignment(Pos.CENTER);
+        scrollpane.setContent(vbox);
+        vbox.setPadding(new Insets(45, 0, 0, 45));
+        
+        
+        ////////////////////////////////////////
+        
+        HBox hbox1 = new HBox();
+        hbox1.setSpacing(spacing);
+        hbox1.setPadding(new Insets(30,0,0,0));
+        Text nombret = new Text("Nombres:");
+        nombret.setWrappingWidth(wrappingW);
+        
+        TextField nombretf = new TextField();
+        hbox1.getChildren().add(nombret);
+        hbox1.getChildren().add(nombretf);
+        
+        HBox hbox2 = new HBox();
+        hbox2.setSpacing(spacing);
+        hbox2.setPadding(new Insets(30,0,0,0));
+        Text apellidot= new Text("Apellidos:");
+        
+        apellidot.setWrappingWidth(wrappingW);
+        TextField apellidotf = new TextField();
+        hbox2.getChildren().add(apellidot);
+        hbox2.getChildren().add(apellidotf);
+        
+        HBox hbox3 = new HBox();
+        hbox3.setSpacing(spacing);
+        
+        hbox3.setPadding(new Insets(30,0,0,0));
+        Text correot = new Text("Correo:");
+        
+        correot.setWrappingWidth(wrappingW);
+        TextField correotf = new TextField();
+        hbox3.getChildren().add(correot);
+        hbox3.getChildren().add(correotf);
+        
+        HBox hbox4 = new HBox();
+        
+        hbox4.setSpacing(spacing);
+        hbox4.setPadding(new Insets(30,0,0,0));
+        Text orgt= new Text("Organización:");
+        
+        orgt.setWrappingWidth(wrappingW);
+        TextField orgtf = new TextField();
+        hbox4.getChildren().add(orgt);
+        hbox4.getChildren().add(orgtf);
+        
+        HBox hbox5 = new HBox();
+        hbox5.setSpacing(spacing);
+        hbox5.setPadding(new Insets(30,0,0,0));
+        Text clavet = new Text("Clave:");
+        
+        clavet.setWrappingWidth(wrappingW);
+        PasswordField clavetf = new PasswordField();
+        hbox5.getChildren().add(clavet);
+        hbox5.getChildren().add(clavetf);     
+        
+        HBox hbox6 = new HBox();
+        
+        
+        Button btnRegister = new Button("Registrar");
+        
+        VBox.setMargin(btnRegister,new Insets(30,0,0,0));
+        
+        //////////////////////////////////////////////////
+        
+        vbox.getChildren().clear();
+        vbox.getChildren().add(hbox1);
+        vbox.getChildren().add(hbox2);
+        vbox.getChildren().add(hbox3);
+        vbox.getChildren().add(hbox4);
+        vbox.getChildren().add(hbox5);
+        
+        ///////////////////////////////////////////////////
+        
+        
+        ///////////////////////////////////////////////////
+        btnRegister.setOnMouseClicked((MouseEvent evento)-> 
+        {
+            String nombre = nombretf.getText();
+            String apellido = apellidotf.getText();
+            String organizacion = orgtf.getText();
+            String correo = correotf.getText();   
+            String cla = clavetf.getText();
+            System.out.println(correo);
+            System.out.println(cla);
+            System.out.println(correo);
+            
+            if(!nombretf.getText().isEmpty() && !apellidotf.getText().isEmpty() &&
+                !correotf.getText().isEmpty() && !orgtf.getText().isEmpty() &&
+                !clavetf.getText().isEmpty())
+            {  
+
+                    if(Comprador.registrarComprador(nombre, apellido, organizacion, correo, cla))
+                    {
+                        //Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
+                        //a.show();  
+                    }
+
+            }
+
+        });
+        vbox.getChildren().add(btnRegister);
+        
     }
 
     @FXML
-    private void botonRealizarOferta(MouseEvent event) {
+    private void botonRealizarOferta(MouseEvent event) 
+    {
     }
 }
 
