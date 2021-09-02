@@ -7,9 +7,11 @@ package ec.edu.espol.model;
 
 import ec.edu.espol.util.Util;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
@@ -20,7 +22,7 @@ import java.util.Scanner;
  *
  * @author Josue Vera + Andres Porras
  */
-public class Oferta implements Serializable
+public class Oferta implements Serializable,Comparable<Oferta>
 {
     protected String correo;
     protected double precio;
@@ -80,6 +82,19 @@ public class Oferta implements Serializable
         }
         
     }
+   public static ArrayList<Oferta> extraerOferta(String archivo){
+        ArrayList<Oferta> ofertas = new ArrayList<> ();
+        try {
+            ObjectInputStream inStream = new ObjectInputStream(new FileInputStream(new File(archivo)));
+            ofertas=(ArrayList<Oferta>)inStream.readObject();
+            return ofertas;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return ofertas;
+    }
    
     public static void removerOferta(String filename, Oferta oferta) 
     {
@@ -123,5 +138,12 @@ public class Oferta implements Serializable
         String res = String.format("Placa: %s%nCorreo: %s%nPrecio Ofertado: %.2f", this.getPlaca(),
                 this.getCorreo(), this.getPrecio());
         return res;
+    }
+
+    @Override
+    public int compareTo(Oferta arg0) {
+        Double p1= this.precio;
+        Double p2= arg0.getPrecio();
+       return p2.compareTo(p1);
     }
 }

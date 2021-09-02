@@ -9,6 +9,7 @@ import ec.edu.espol.model.Autos;
 import ec.edu.espol.model.Camioneta;
 import ec.edu.espol.model.Comprador;
 import ec.edu.espol.model.Motos;
+import ec.edu.espol.model.Oferta;
 import ec.edu.espol.model.Persona;
 import ec.edu.espol.model.Vendedor;
 import ec.edu.espol.util.Rol;
@@ -30,11 +31,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javax.mail.MessagingException;
 
 /**
  * FXML Controller class
@@ -43,7 +46,7 @@ import javafx.scene.text.Text;
  */
 public class PaginaPrincipalController implements Initializable 
 {
-
+    private ArrayList<Oferta> ofertas;
     private ArrayList<Persona> personas;
     private Persona usuario;
     private String correoUser;
@@ -78,6 +81,7 @@ public class PaginaPrincipalController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {  
         this.personas = Util.readPersonasFile("usuarios.ser");
+        this.ofertas=Oferta.extraerOferta("ofertas.ser");
 
         
 
@@ -384,6 +388,34 @@ public class PaginaPrincipalController implements Initializable
 
     @FXML
     private void botonAceptarOfertas(MouseEvent event) {
+        scrollpane.setContent(null);
+        ofertas.sort(Oferta:: compareTo);
+        VBox vbox= new VBox();
+        scrollpane.setContent(vbox);
+        for(Oferta o:ofertas){
+                HBox hbox = new HBox();
+                Image foto= new Image("img/"+o.getPlaca()+".jpg");
+                ImageView im= new ImageView(foto);
+                Text comprador= new Text(o.getCorreo());
+                Text precio= new Text(""+o.getPrecio());
+                Text placa= new Text(o.getPlaca());
+                Button boton= new Button();
+                boton.setText("Aceptar");
+                boton.setOnMouseClicked((MouseEvent evento)->{
+                    Oferta.removerOferta("ofertas.ser", o);
+                try {
+                    Util.enviarCorreo(o.getCorreo(),usuario.getCorreo());
+                } catch (MessagingException ex) {
+                    Util.mostrarWarning("ERROR DE MENSAJERIA",ex.getMessage());
+                }
+                this.botonAceptarOfertas(event);
+                });
+                hbox.getChildren().add(im);
+                hbox.getChildren().add(comprador);
+                hbox.getChildren().add(precio);
+                hbox.getChildren().add(placa);
+                hbox.getChildren().add(boton);
+        }
     }
 
     @FXML
