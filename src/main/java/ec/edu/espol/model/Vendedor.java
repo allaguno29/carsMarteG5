@@ -102,44 +102,6 @@ public class Vendedor extends Persona implements Serializable{
             //ioe.printStackTrace();
         }
     }
-
-    //FUNCION LISTA - NO REVISADA TODA
-    public static void RegistrarVehiculo(Scanner sc) 
-    {
-        System.out.println("Ingrese su correo electronico: ");
-        String correo = sc.nextLine();
-        System.out.println("Ingrese su contraseña: ");
-        String contrasenia = sc.nextLine();
-        
-        while (!Util.credencialEsValida("usuarios.ser", correo, contrasenia)) 
-        {
-            System.out.println("Ingrese su correo electronico: ");
-            correo = sc.nextLine();
-            System.out.println("Ingrese su contraseña: ");
-            contrasenia = sc.nextLine();
-        }
-        
-        System.out.println("Ingrese el tipo de vehiculo que quiere registrar: ");
-        String tipo = sc.nextLine();
-        
-        while ((tipo.equalsIgnoreCase("auto") || tipo.equalsIgnoreCase("moto") || tipo.equalsIgnoreCase("camioneta")) == false) {
-            System.out.println("Ingrese si su vehiculo es: auto, moto o camioneta");
-            tipo = sc.nextLine();
-            
-        }
-        
-        if (tipo.equalsIgnoreCase("auto")) {
-            Autos.DatosAuto(sc);
-        }
-        if (tipo.equalsIgnoreCase("moto")) {
-            Motos.DatosMoto(sc);
-        }
-        if (tipo.equalsIgnoreCase("camioneta")) {
-            Camioneta.DatosCamioneta(sc);
-        }
-    }
-    
- 
     //FUNCION LISTA - NO REVISADA POSIBLEMENTE SIN PROPOSITO
     public static ArrayList<Vendedor> extraerVendedores(String filename)
     {

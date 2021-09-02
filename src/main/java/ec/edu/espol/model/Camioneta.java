@@ -58,43 +58,7 @@ public class Camioneta extends Vehiculo implements Serializable
         this.traccion = traccion;
     }
     
-    public static void DatosCamioneta(Scanner sc){
-        //sc.nextLine();
-        System.out.println("Ingrese la placa del vehiculo: ");
-        String placa =sc.nextLine();
-        
-        while(!Util.placaEsValida("vehiculos.ser",placa))
-        {
-            System.out.println("Placa ya registrada en el sistema, por favor ingrese otra: ");
-            placa = sc.nextLine();
-        }
-        System.out.println("Ingrese la marca del vehiculo: ");
-        String marca= sc.nextLine();
-        System.out.println("Ingrese el modelo del vehiculo: ");
-        String modelo= sc.nextLine();
-        System.out.println("Ingrese el tipo de motor que tiene el vehiculo: ");
-        String motor=sc.nextLine();
-        System.out.println("Ingrese el año del vehiculo: ");
-        int año= sc.nextInt();
-        System.out.println("Ingrese el kilometraje del vehiculo: ");
-        double recorrido=sc.nextDouble();
-        sc.nextLine();
-        System.out.println("Ingrese el color del vehiculo: ");
-        String color=sc.nextLine();
-        System.out.println("Ingrese el tipo de combustible que usa el vehiculo: ");
-        String combustible=sc.nextLine();
-        System.out.println("Ingrese el precio de su vehiculo: ");
-        double precio= sc.nextDouble();
-        System.out.println("Ingrese la transmision del vehiculo: ");
-        String transmision=sc.nextLine();
-        System.out.println("Ingrese que tipos de vidrio tine su vehiculo: ");
-        String vidrios= sc.nextLine();
-        System.out.println("Ingrese la traccion del vehiculo: ");
-        String traccion=sc.nextLine();
-        Vehiculo camioneta= new Camioneta(vidrios,placa,marca,modelo,motor,año,recorrido,color,combustible,precio,transmision,traccion);
-        camioneta.saveFile("vehiculos.ser"); 
-        camioneta.saveFile("camionetas.ser");
-    }
+   
     public static void registrarCamioneta(ScrollPane sp){
         VBox vbox= new VBox();
         vbox.setAlignment(Pos.CENTER);
@@ -115,9 +79,9 @@ public class Camioneta extends Vehiculo implements Serializable
         hbox3.getChildren().add(motort);
         hbox3.getChildren().add(motor);
         HBox hbox4 = new HBox();
-        Text placat= new Text("Año del vehiculo:");
+        Text añot= new Text("Año del vehiculo:");
         TextField año = new TextField();
-        hbox4.getChildren().add(placat);
+        hbox4.getChildren().add(añot);
         hbox4.getChildren().add(año);
         HBox hbox5 = new HBox();
         Text kilometrajet= new Text("kilometraje:");
@@ -140,20 +104,25 @@ public class Camioneta extends Vehiculo implements Serializable
         hbox8.getChildren().add(preciot);
         hbox8.getChildren().add(precio);
         HBox hbox9 = new HBox();
-        Text vidriost= new Text("Tipo de vidrios");
+        Text vidriost= new Text("Tipo de vidrios:");
         TextField  vidrios= new TextField();
         hbox9.getChildren().add(vidriost);
         hbox9.getChildren().add(vidrios);
         HBox hbox10 = new HBox();
-        Text transmisiont= new Text("Tipo de vidrios");
+        Text transmisiont= new Text("Transmision:");
         TextField  transmision= new TextField();
         hbox10.getChildren().add(transmisiont);
         hbox10.getChildren().add(transmision);
         HBox hbox11 = new HBox();
-        Text tracciont= new Text("Tipo de vidrios");
+        Text tracciont= new Text("Traccion:");
         TextField  traccion= new TextField();
-        hbox9.getChildren().add(vidriost);
-        hbox9.getChildren().add(vidrios);
+        hbox11.getChildren().add(tracciont);
+        hbox11.getChildren().add(traccion);
+        HBox hbox12 = new HBox();
+        Text placat= new Text("Placa:");
+        TextField  placa= new TextField();
+        hbox12.getChildren().add(placat);
+        hbox12.getChildren().add(placa);
         vbox.getChildren().add(hbox1);
         vbox.getChildren().add(hbox2);
         vbox.getChildren().add(hbox3);
@@ -162,11 +131,28 @@ public class Camioneta extends Vehiculo implements Serializable
         vbox.getChildren().add(hbox6);
         vbox.getChildren().add(hbox7);
         vbox.getChildren().add(hbox8);
-        
-            int añov= Integer.parseInt(año.getText());
-            double recorridov= Double.parseDouble(kilometraje.getText());
-            double preciov=Double.parseDouble(precio.getText());
-        
-        
+        vbox.getChildren().add(hbox9);
+        vbox.getChildren().add(hbox10);
+        vbox.getChildren().add(hbox11);
+        vbox.getChildren().add(hbox12);
+        if(!marca.getText().isEmpty() && !modelo.getText().isEmpty() &&
+           !motor.getText().isEmpty() && !año.getText().isEmpty() &&
+           !kilometraje.getText().isEmpty()&&!combustible.getText().isEmpty()&&
+           !color.getText().isEmpty() && !precio.getText().isEmpty() && !vidrios.getText().isEmpty()&&
+           !transmision.getText().isEmpty() && !traccion.getText().isEmpty() && !placa.getText().isEmpty()){
+            try{
+                int añov= Integer.parseInt(año.getText());
+                double recorridov= Double.parseDouble(kilometraje.getText());
+                double preciov=Double.parseDouble(precio.getText());
+                Camioneta camioneta= new Camioneta(vidrios.getText(),placa.getText(),marca.getText(),modelo.getText(),motor.getText(),añov,recorridov,color.getText(),
+                                            combustible.getText(),preciov,transmision.getText(),traccion.getText());
+                camioneta.saveFile("vehiculos.ser");
+                camioneta.saveFile("camionetas.ser");
+            }catch(NumberFormatException e){
+                Util.mostrarWarning("ERROR AL LLENAR CAMPOS", "Año solo permite numeros enteros y kilotraje y precio solo permite decimales.");
+            }
+        }else{
+            Util.mostrarLlenar();
+        }
     }
 }
