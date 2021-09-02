@@ -19,7 +19,12 @@
                   <Image url="@../../../../img/default.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="salirbtn" mnemonicParsing="false" onMouseClicked="#salir" text="Salir" />
+            <Button fx:id="venbtn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#botonRegistrarVendedor" prefHeight="45.0" prefWidth="180.0" text="Registrar vendedor" />
+            <Button fx:id="venbtn2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#botonIngresarVehiculo" prefHeight="45.0" prefWidth="180.0" text="Ingresar vehículo" />
+            <Button fx:id="venbtn3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#botonAceptarOfertas" prefHeight="45.0" prefWidth="180.0" text="Aceptar ofertas" />
+            <Button fx:id="btnComp1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#botonRegistrarComprador" prefHeight="45.0" prefWidth="180.0" text="Registrar comprador" />
+            <Button fx:id="btnComp2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#botonRealizarOferta" prefHeight="45.0" prefWidth="180.0" text="Realizar una oferta" />
+            <Button fx:id="salirbtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#salir" prefHeight="45.0" prefWidth="180.0" text="Salir" />
          </children>
       </VBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
