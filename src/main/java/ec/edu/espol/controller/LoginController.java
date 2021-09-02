@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -64,10 +65,20 @@ public class LoginController implements Initializable {
         if(Util.credencialEsValida(personasFile, correoObtenido, claveObtenida))
         {
 
-            FXMLLoader fxmlpagina = App.loadFXMPagina("PaginaPrincipal");
-            App.setRootPagina(fxmlpagina);
-            PaginaPrincipalController pg = fxmlpagina.getController();   
+            //System.out.println(correoObtenido);
+            //System.out.println(correo.getText());
+            //FXMLLoader fxmlpagina = App.loadFXMPagina("PaginaPrincipal");
+            //PaginaPrincipalController pg = fxmlpagina.getController();;   
+            
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PaginaPrincipal.fxml"));
+            Parent root = fxmlLoader.load();
+            App.setAnyRoot(root);
+            PaginaPrincipalController pg = fxmlLoader.<PaginaPrincipalController>getController();
+            
             pg.setCorreoUser(correoObtenido);
+            pg.mostrarBotones();
+            
         }
  
     }

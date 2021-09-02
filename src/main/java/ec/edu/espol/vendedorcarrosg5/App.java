@@ -65,12 +65,13 @@ public class App extends Application {
         stage.show();
     }
     
+    
     public static void agregarUsuario(Persona u) {
         usuarios.add(u);
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    public static void setAnyRoot(Parent root) throws IOException {
+        scene.setRoot(root);
     }
     
     public static void setRootLogin(FXMLLoader fxmllogin) throws IOException {

@@ -27,9 +27,9 @@
             <Label text="Correo:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <Label text="Contraseña:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <TextField fx:id="correo" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <PasswordField fx:id="pass" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <Button fx:id="btnIni" mnemonicParsing="false" onMouseClicked="#cambioUsuario" text="Iniciar Sesion" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
             <Button fx:id="btnReg" mnemonicParsing="false" onMouseClicked="#CambioRegistro" text="Registrar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-            <PasswordField fx:id="pass" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
          </children>
       </GridPane>
    </center>

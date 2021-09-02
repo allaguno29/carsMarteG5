@@ -39,11 +39,6 @@ public class PaginaPrincipalController implements Initializable
 
     @FXML
     private Button salirbtn;
-    @FXML
-    private Button btnVendedor;
-    @FXML
-    private Button btnComprador;
-    @FXML
     private VBox Vcenter;
     @FXML
     private ImageView btnImage;
@@ -51,6 +46,8 @@ public class PaginaPrincipalController implements Initializable
     private Button bt2;
     private Button bt3;
     private Button bt4;
+    @FXML
+    private VBox panelBotones;
 
     /**
      * Initializes the controller class.
@@ -59,6 +56,20 @@ public class PaginaPrincipalController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {  
         this.personas = Util.readPersonasFile("usuarios.ser");
+
+        
+
+
+    }
+    
+    public void setCorreoUser(String correo)
+    {
+        correoUser = correo;
+        
+    }
+    
+    public void mostrarBotones()
+    {
         for (Persona p: personas)
         {
             if(p.getCorreo().equals(correoUser))
@@ -80,14 +91,8 @@ public class PaginaPrincipalController implements Initializable
         {
             this.mostrarAmbos();
         }
-
-
     }
     
-    public void setCorreoUser(String correo)
-    {
-        this.correoUser = correo;
-    }
     @FXML
     private void salir(MouseEvent event) 
     {
@@ -136,12 +141,14 @@ public class PaginaPrincipalController implements Initializable
         Button bt1 = new Button("Registrar un nuevo vendedor");
         Button bt2 = new Button("Ingresar un nuevo vehículo");
         Button bt3 = new Button("Aceptar oferta");
-        Button bt4 = new Button("Regresar");
-        Vcenter.getChildren().clear();
-        Vcenter.getChildren().add(bt1);
-        Vcenter.getChildren().add(bt2);
-        Vcenter.getChildren().add(bt3);
-        Vcenter.getChildren().add(bt4);
+        //Button bt4 = new Button("Regresar");
+        panelBotones.getChildren().clear();
+        
+        panelBotones.getChildren().add(btnImage);
+        panelBotones.getChildren().add(bt1);
+        panelBotones.getChildren().add(bt2);
+        panelBotones.getChildren().add(bt3);
+        panelBotones.getChildren().add(salirbtn);
     
     }
     
@@ -149,11 +156,12 @@ public class PaginaPrincipalController implements Initializable
     
             Button bt1 = new Button("Registrar un nuevo comprador");
             Button bt2 = new Button("Ofertar por un vehículo");
-            Button bt3 = new Button("Regresar");
-            Vcenter.getChildren().clear();
-            Vcenter.getChildren().add(bt1);
-            Vcenter.getChildren().add(bt2);
-            Vcenter.getChildren().add(bt3);
+            //Button bt3 = new Button("Regresar");
+            panelBotones.getChildren().clear();
+            panelBotones.getChildren().add(btnImage);
+            panelBotones.getChildren().add(bt1);
+            panelBotones.getChildren().add(bt2);
+            panelBotones.getChildren().add(salirbtn);
   
                 
     }
@@ -164,18 +172,19 @@ public class PaginaPrincipalController implements Initializable
         Button bt2 = new Button("Ingresar un nuevo vehículo");
         Button bt3 = new Button("Aceptar oferta");
         
-        Vcenter.getChildren().clear();
-        Vcenter.getChildren().add(bt1);
-        Vcenter.getChildren().add(bt2);
-        Vcenter.getChildren().add(bt3);
+        panelBotones.getChildren().clear();
+        panelBotones.getChildren().add(btnImage);
+        panelBotones.getChildren().add(bt1);
+        panelBotones.getChildren().add(bt2);
+        panelBotones.getChildren().add(bt3);
         
         Button btt1 = new Button("Registrar un nuevo comprador");
         Button btt2 = new Button("Ofertar por un vehículo");
-        Button btt3 = new Button("Regresar");
         
-        Vcenter.getChildren().add(btt1);
-        Vcenter.getChildren().add(btt2);
-        Vcenter.getChildren().add(btt3);
+        
+        panelBotones.getChildren().add(btt1);
+        panelBotones.getChildren().add(btt2);
+        panelBotones.getChildren().add(salirbtn);
     }
 }
 
