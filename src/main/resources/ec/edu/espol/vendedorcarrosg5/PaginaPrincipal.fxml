@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controller.PaginaPrincipalController">
+<HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="460.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controller.PaginaPrincipalController">
    <children>
-      <VBox id="navigator" fx:id="panelBotones" prefHeight="304.0" prefWidth="180.0">
+      <VBox id="navigator" fx:id="panelBotones" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="460.0" prefWidth="180.0">
          <children>
             <ImageView fx:id="btnImage" fitHeight="190.0" fitWidth="180.0" onMouseClicked="#mostrarPerfil" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -27,9 +27,9 @@
          </children>
       </VBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="420.0">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="420.0">
          <center>
-            <ScrollPane fx:id="scrollpane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <ScrollPane fx:id="scrollpane" prefHeight="455.0" prefWidth="420.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>
