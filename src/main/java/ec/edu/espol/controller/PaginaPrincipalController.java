@@ -387,7 +387,6 @@ public class PaginaPrincipalController implements Initializable
     }
 
     @FXML
-<<<<<<< HEAD
     private void botonAceptarOfertas(MouseEvent event) {
         scrollpane.setContent(null);
         ofertas.sort(Oferta:: compareTo);
@@ -417,15 +416,11 @@ public class PaginaPrincipalController implements Initializable
                 hbox.getChildren().add(placa);
                 hbox.getChildren().add(boton);
         }
-=======
-    private void botonAceptarOfertas(MouseEvent event) 
-    {
->>>>>>> 9eb84502282c335acb9eb25f48e1b3ab988dbef6
     }
+    
 
     @FXML
-    private void botonRegistrarComprador(MouseEvent event) 
-    {
+    private void botonRegistrarComprador(MouseEvent event) {
         //////////////////////////////////////
         double wrappingW = 80;
         double spacing = 60;
@@ -539,8 +534,7 @@ public class PaginaPrincipalController implements Initializable
     }
 
     @FXML
-    private void botonRealizarOferta(MouseEvent event) 
-    {
+    private void botonRealizarOferta(MouseEvent event) {
     }
 }
 
