@@ -121,7 +121,7 @@ public class RegistroController implements Initializable {
         else if (!chckV.isSelected() && !chckC.isSelected()) 
         {
             System.out.println("Rol vacio");
-            mostrarRolNoEleg();
+            Util.mostrarRolNoEleg();
         }
         else
         {    
@@ -131,14 +131,7 @@ public class RegistroController implements Initializable {
         
         
     }
-    private void mostrarRolNoEleg() 
-    {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText(null);
-        alert.setTitle("Campo Incompleto");
-        alert.setContentText("Por favor seleccione un rol");
-        alert.showAndWait();
-    } 
+   
    
     
 

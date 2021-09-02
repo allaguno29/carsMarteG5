@@ -18,9 +18,17 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -55,6 +63,8 @@ public class PaginaPrincipalController implements Initializable
     private Button btnComp2;
     @FXML
     private Button venbtn3;
+    @FXML
+    private ScrollPane scrollpane;
 
     /**
      * Initializes the controller class.
@@ -184,7 +194,117 @@ public class PaginaPrincipalController implements Initializable
     }
 
     @FXML
-    private void botonRegistrarVendedor(MouseEvent event) {
+    private void botonRegistrarVendedor(MouseEvent event) 
+    {
+        //////////////////////////////////////
+        
+        VBox vbox= new VBox();
+        vbox.setAlignment(Pos.CENTER);
+        scrollpane.setContent(vbox);
+        
+        
+        ////////////////////////////////////////
+        
+        HBox hbox1 = new HBox();
+        Text nombret = new Text("Nombres:");
+        TextField nombretf = new TextField();
+        hbox1.getChildren().add(nombret);
+        hbox1.getChildren().add(nombretf);
+        
+        HBox hbox2 = new HBox();
+        Text apellidot= new Text("Apellidos:");
+        TextField apellidotf = new TextField();
+        hbox2.getChildren().add(apellidot);
+        hbox2.getChildren().add(apellidotf);
+        
+        HBox hbox3 = new HBox();
+        Text correot = new Text("Correo:");
+        TextField correotf = new TextField();
+        hbox3.getChildren().add(correot);
+        hbox3.getChildren().add(correotf);
+        
+        HBox hbox4 = new HBox();
+        Text orgt= new Text("Organización:");
+        TextField orgtf = new TextField();
+        hbox4.getChildren().add(orgt);
+        hbox4.getChildren().add(orgtf);
+        
+        HBox hbox5 = new HBox();
+        Text clavet = new Text("Clave:");
+        PasswordField clavetf = new PasswordField();
+        hbox5.getChildren().add(clavet);
+        hbox5.getChildren().add(clavetf);     
+        
+        HBox hbox6 = new HBox();
+        CheckBox checkV = new CheckBox("Vendedor");
+        CheckBox checkC = new CheckBox("Comprador");
+        
+        /////////////////////////////////////////////////
+        
+        vbox.getChildren().clear();
+        vbox.getChildren().add(hbox1);
+        vbox.getChildren().add(hbox2);
+        vbox.getChildren().add(hbox3);
+        vbox.getChildren().add(hbox4);
+        vbox.getChildren().add(hbox5);
+        vbox.getChildren().add(hbox6);
+        
+        /////////////////////////////////////////////////
+        String nombre = nombretf.getText();
+        String apellido = apellidotf.getText();
+        String organizacion = orgtf.getText();
+        String correo = correotf.getText();   
+        String cla = clavetf.getText();
+        
+        if(!nombretf.getText().isEmpty() && !apellidotf.getText().isEmpty() &&
+                !correotf.getText().isEmpty() && !orgtf.getText().isEmpty() &&
+                !clavetf.getText().isEmpty())
+        {  
+            if (checkV.isSelected() && !checkC.isSelected()) 
+            {
+
+               //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
+                if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.VENDEDOR))
+                {
+                    Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
+                    a.show();
+                }
+                
+            }
+
+            if (checkC.isSelected() && !checkV.isSelected()) 
+            {
+                //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
+                if(Comprador.registrarComprador(nombre, apellido, organizacion, correo, cla))
+                {
+                    Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
+                    a.show();  
+                }
+
+            }
+
+            if (checkV.isSelected() && checkC.isSelected()) 
+            {
+
+                
+                //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
+                if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.AMBOS))
+                {
+                    Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
+                    a.show();   
+                }
+                         
+            }
+        }
+        else if (!checkV.isSelected() && !checkC.isSelected()) 
+        {
+            //System.out.println("Rol vacio");
+            Util.mostrarRolNoEleg();
+        }
+        else
+        {    
+            Util.mostrarLlenar();
+        }    
     }
 
     @FXML

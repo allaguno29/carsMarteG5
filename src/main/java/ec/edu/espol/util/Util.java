@@ -238,4 +238,13 @@ public class Util {
         alert.setContentText("Llenar todos los campos");
         alert.showAndWait();
     }
+    
+     public static void mostrarRolNoEleg() 
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText(null);
+        alert.setTitle("Campo Incompleto");
+        alert.setContentText("Por favor seleccione un rol");
+        alert.showAndWait();
+    } 
 }
