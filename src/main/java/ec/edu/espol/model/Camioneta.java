@@ -137,8 +137,23 @@ public class Camioneta extends Vehiculo implements Serializable
         HBox hbox8 = new HBox();
         Text preciot= new Text("Precio:");
         TextField precio = new TextField();
-        vbox.getChildren().add(preciot);
-        vbox.getChildren().add(precio);
+        hbox8.getChildren().add(preciot);
+        hbox8.getChildren().add(precio);
+        HBox hbox9 = new HBox();
+        Text vidriost= new Text("Tipo de vidrios");
+        TextField  vidrios= new TextField();
+        hbox9.getChildren().add(vidriost);
+        hbox9.getChildren().add(vidrios);
+        HBox hbox10 = new HBox();
+        Text transmisiont= new Text("Tipo de vidrios");
+        TextField  transmision= new TextField();
+        hbox10.getChildren().add(transmisiont);
+        hbox10.getChildren().add(transmision);
+        HBox hbox11 = new HBox();
+        Text tracciont= new Text("Tipo de vidrios");
+        TextField  traccion= new TextField();
+        hbox9.getChildren().add(vidriost);
+        hbox9.getChildren().add(vidrios);
         vbox.getChildren().add(hbox1);
         vbox.getChildren().add(hbox2);
         vbox.getChildren().add(hbox3);
@@ -147,7 +162,11 @@ public class Camioneta extends Vehiculo implements Serializable
         vbox.getChildren().add(hbox6);
         vbox.getChildren().add(hbox7);
         vbox.getChildren().add(hbox8);
-        double añov= Double.parseDouble(año.getText());
+        
+            int añov= Integer.parseInt(año.getText());
+            double recorridov= Double.parseDouble(kilometraje.getText());
+            double preciov=Double.parseDouble(precio.getText());
+        
         
     }
 }

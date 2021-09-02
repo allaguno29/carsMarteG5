@@ -125,7 +125,7 @@ public class RegistroController implements Initializable {
         }
         else
         {    
-            mostrarLlenar();
+            Util.mostrarLlenar();
         }
         
         
@@ -139,13 +139,7 @@ public class RegistroController implements Initializable {
         alert.setContentText("Por favor seleccione un rol");
         alert.showAndWait();
     } 
-   private void mostrarLlenar() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText(null);
-        alert.setTitle("Campo Incompleto");
-        alert.setContentText("Llenar todos los campos");
-        alert.showAndWait();
-    }
+   
     
 
     
