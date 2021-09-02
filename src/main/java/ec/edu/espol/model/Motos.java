@@ -9,8 +9,10 @@ import ec.edu.espol.util.Util;
 import java.io.Serializable;
 import java.util.Scanner;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -31,11 +33,12 @@ public class Motos extends Vehiculo implements Serializable{
         VBox vbox= new VBox();
         vbox.setAlignment(Pos.CENTER);
         sp.setContent(vbox);
+        Button registrar = new Button("Registrar");
         HBox hbox1 = new HBox();
         Text marcat= new Text("Marca:");
         TextField marca = new TextField();
         hbox1.getChildren().add(marcat);
-        hbox1.getChildren().add(marcat);
+        hbox1.getChildren().add(marca);
         HBox hbox2 = new HBox();
         Text modelot= new Text("Modelo:");
         TextField modelo = new TextField();
@@ -85,6 +88,8 @@ public class Motos extends Vehiculo implements Serializable{
         vbox.getChildren().add(hbox7);
         vbox.getChildren().add(hbox8);
         vbox.getChildren().add(hbox12);
+        vbox.getChildren().add(registrar);
+        registrar.setOnMouseClicked((MouseEvent evento)->{
         if(!marca.getText().isEmpty() && !modelo.getText().isEmpty() &&
            !motor.getText().isEmpty() && !año.getText().isEmpty() &&
            !kilometraje.getText().isEmpty()&&!combustible.getText().isEmpty()&&
@@ -99,12 +104,13 @@ public class Motos extends Vehiculo implements Serializable{
                 moto.saveFile("camionetas.ser");
             }catch(NumberFormatException e){
                 Util.mostrarWarning("ERROR AL LLENAR CAMPOS", "Año solo permite numeros enteros y kilotraje y precio solo permite decimales.");
+            }catch(Exception e){
+                 Util.mostrarWarning("ERROR", e.getMessage());
             }
         }else{
-            Util.mostrarLlenar();
-        }
+            Util.mostrarLlenar();}
+        });
     }
-
-    }
+}
     
   
