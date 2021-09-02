@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\ANDRES PORRAS\Documents\NetBeansProjects\carsMarteG5\src\main\java\ec\edu\espol\util\Util.java
 C:\Users\ANDRES PORRAS\Documents\NetBeansProjects\carsMarteG5\src\main\java\ec\edu\espol\vendedorcarrosg5\App.java
 C:\Users\ANDRES PORRAS\Documents\NetBeansProjects\carsMarteG5\src\main\java\ec\edu\espol\controller\LoginController.java
@@ -14,3 +15,21 @@ C:\Users\ANDRES PORRAS\Documents\NetBeansProjects\carsMarteG5\src\main\java\ec\e
 C:\Users\ANDRES PORRAS\Documents\NetBeansProjects\carsMarteG5\src\main\java\ec\edu\espol\model\Vendedor.java
 C:\Users\ANDRES PORRAS\Documents\NetBeansProjects\carsMarteG5\src\main\java\ec\edu\espol\model\CorreoException.java
 C:\Users\ANDRES PORRAS\Documents\NetBeansProjects\carsMarteG5\src\main\java\ec\edu\espol\model\Oferta.java
+=======
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\model\Persona.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\controller\LoginController.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\model\Oferta.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\util\Rol.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\model\CorreoException.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\vendedorcarrosg5\App.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\model\Motos.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\model\Vehiculo.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\util\Util.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\model\Camioneta.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\model\Comprador.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\model\Vendedor.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\controller\PaginaPrincipalController.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\module-info.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\model\Autos.java
+C:\Users\Aiermero\Desktop\carsMarteG5\src\main\java\ec\edu\espol\controller\RegistroController.java
+>>>>>>> 220b3ddd782ee1786f1d0fe4ae57bc7aaf8583c8

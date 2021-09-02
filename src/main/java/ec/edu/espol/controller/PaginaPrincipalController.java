@@ -58,9 +58,29 @@ public class PaginaPrincipalController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {  
-        this.vendedores = Vendedor.extraerVendedores("usuarios.ser");
-//Lista de personas crear extraer usuarios
-// No lee a los compradores
+        this.personas = Util.readPersonasFile("usuarios.ser");
+        for (Persona p: personas)
+        {
+            if(p.getCorreo().equals(correoUser))
+            {
+                usuario = p;
+            }
+        }
+        
+        if(usuario.getRol()==Rol.COMPRADOR)
+        {
+            this.mostrarComprador();
+        }
+        
+        else if(usuario.getRol()==Rol.VENDEDOR)
+        {
+            this.mostrarVendedor();
+        }
+        else
+        {
+            this.mostrarAmbos();
+        }
+
 
     }
     
@@ -111,33 +131,51 @@ public class PaginaPrincipalController implements Initializable
     
     }}
 
-    @FXML
-    private void mostrarVendedor(MouseEvent event) {
-         for (Vendedor vd : vendedores){
-                Button bt1 = new Button("Registrar un nuevo vendedor");
-                Button bt2 = new Button("Ingresar un nuevo vehículo");
-                Button bt3 = new Button("Aceptar oferta");
-                Button bt4 = new Button("Regresar");
-                Vcenter.getChildren().clear();
-                Vcenter.getChildren().add(bt1);
-                Vcenter.getChildren().add(bt2);
-                Vcenter.getChildren().add(bt3);
-                Vcenter.getChildren().add(bt4);
-    }
+    private void mostrarVendedor() {
+
+        Button bt1 = new Button("Registrar un nuevo vendedor");
+        Button bt2 = new Button("Ingresar un nuevo vehículo");
+        Button bt3 = new Button("Aceptar oferta");
+        Button bt4 = new Button("Regresar");
+        Vcenter.getChildren().clear();
+        Vcenter.getChildren().add(bt1);
+        Vcenter.getChildren().add(bt2);
+        Vcenter.getChildren().add(bt3);
+        Vcenter.getChildren().add(bt4);
+    
     }
     
-    @FXML
-    private void mostrarComprador(MouseEvent event) {
-        for (Comprador cp : compradores){
-                Button bt1 = new Button("Registrar un nuevo comprador");
-                Button bt2 = new Button("Ofertar por un vehículo");
-                Button bt3 = new Button("Regresar");
-                Vcenter.getChildren().clear();
-                Vcenter.getChildren().add(bt1);
-                Vcenter.getChildren().add(bt2);
-                Vcenter.getChildren().add(bt3);
+    private void mostrarComprador() {
+    
+            Button bt1 = new Button("Registrar un nuevo comprador");
+            Button bt2 = new Button("Ofertar por un vehículo");
+            Button bt3 = new Button("Regresar");
+            Vcenter.getChildren().clear();
+            Vcenter.getChildren().add(bt1);
+            Vcenter.getChildren().add(bt2);
+            Vcenter.getChildren().add(bt3);
   
-                }
+                
+    }
+    
+    private void mostrarAmbos()
+    {
+        Button bt1 = new Button("Registrar un nuevo vendedor");
+        Button bt2 = new Button("Ingresar un nuevo vehículo");
+        Button bt3 = new Button("Aceptar oferta");
+        
+        Vcenter.getChildren().clear();
+        Vcenter.getChildren().add(bt1);
+        Vcenter.getChildren().add(bt2);
+        Vcenter.getChildren().add(bt3);
+        
+        Button btt1 = new Button("Registrar un nuevo comprador");
+        Button btt2 = new Button("Ofertar por un vehículo");
+        Button btt3 = new Button("Regresar");
+        
+        Vcenter.getChildren().add(btt1);
+        Vcenter.getChildren().add(btt2);
+        Vcenter.getChildren().add(btt3);
     }
 }
 
