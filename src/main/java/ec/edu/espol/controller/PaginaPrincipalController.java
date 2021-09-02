@@ -5,7 +5,10 @@
  */
 package ec.edu.espol.controller;
 
+import ec.edu.espol.model.Autos;
+import ec.edu.espol.model.Camioneta;
 import ec.edu.espol.model.Comprador;
+import ec.edu.espol.model.Motos;
 import ec.edu.espol.model.Persona;
 import ec.edu.espol.model.Vendedor;
 import ec.edu.espol.util.Rol;
@@ -65,7 +68,8 @@ public class PaginaPrincipalController implements Initializable
     @FXML
     private Button venbtn3;
     @FXML
-    private ScrollPane scrollpane;
+    private ScrollPane scrollpane; // Ajustar el tamañano para que se vea bien en pantalla completa ARIANA!!!!!
+    
 
     /**
      * Initializes the controller class.
@@ -353,8 +357,29 @@ public class PaginaPrincipalController implements Initializable
     }
 
     @FXML
-    private void botonIngresarVehiculo(MouseEvent event) 
-    {
+    private void botonIngresarVehiculo(MouseEvent event) {
+        scrollpane.setContent(null);
+        HBox hbox= new HBox();
+        hbox.setAlignment(Pos.CENTER);
+        scrollpane.setPadding(new Insets(80));
+        scrollpane.setContent(hbox);
+        Button auto= new Button("Auto");
+        Button camioneta= new Button("Camioneta");
+        Button moto= new Button("Moto");
+        hbox.getChildren().add(auto);
+        hbox.getChildren().add(camioneta);
+        hbox.getChildren().add(moto);
+        hbox.setPadding(new Insets(20));
+        hbox.setSpacing(20);
+        auto.setOnMouseClicked((MouseEvent evento)->{
+            Autos.registrarAuto(scrollpane);
+        });
+        camioneta.setOnMouseClicked((MouseEvent evento)->{
+            Camioneta.registrarCamioneta(scrollpane);
+        });
+        moto.setOnMouseClicked((MouseEvent evento)->{
+            Motos.registrarMoto(scrollpane);
+        });
     }
 
     @FXML
