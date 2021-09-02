@@ -21,6 +21,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -53,6 +55,7 @@ public class LoginController implements Initializable {
 
         //usuarios = Util.readPersonasFile(personasFile);
        //System.out.println(usuarios);
+       
     }    
 
     @FXML
@@ -64,14 +67,8 @@ public class LoginController implements Initializable {
         
         if(Util.credencialEsValida(personasFile, correoObtenido, claveObtenida))
         {
-
-            //System.out.println(correoObtenido);
-            //System.out.println(correo.getText());
-            //FXMLLoader fxmlpagina = App.loadFXMPagina("PaginaPrincipal");
-            //PaginaPrincipalController pg = fxmlpagina.getController();;   
             
-            
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PaginaPrincipal.fxml"));
+           FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PaginaPrincipal.fxml"));
             Parent root = fxmlLoader.load();
             App.setAnyRoot(root);
             PaginaPrincipalController pg = fxmlLoader.<PaginaPrincipalController>getController();
@@ -84,12 +81,38 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void CambioRegistro(MouseEvent event) throws IOException {
+    private void CambioRegistro(MouseEvent event) throws IOException 
+    {
         FXMLLoader fxmlregister = App.loadFXMRegister("Registro");
         App.setRootRegister(fxmlregister);
         RegistroController rc = fxmlregister.getController();
         
     }
+
+
+
+    @FXML
+    private void cambiarEscenaPorTeclado(KeyEvent event) throws IOException 
+    {
+        if(event.getCode().equals(KeyCode.ENTER))
+        {
+            String correoObtenido = correo.getText();
+            String claveObtenida = pass.getText();
+            if(Util.credencialEsValida(personasFile, correoObtenido, claveObtenida))
+            {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PaginaPrincipal.fxml"));
+                Parent root = fxmlLoader.load();
+                App.setAnyRoot(root);
+                PaginaPrincipalController pg = fxmlLoader.<PaginaPrincipalController>getController();
+
+                pg.setCorreoUser(correoObtenido);
+                pg.mostrarBotones();
+
+            }
+        }
+    }
+
 }
         
                

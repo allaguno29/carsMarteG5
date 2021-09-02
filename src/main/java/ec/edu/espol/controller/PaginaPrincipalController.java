@@ -42,12 +42,19 @@ public class PaginaPrincipalController implements Initializable
     private VBox Vcenter;
     @FXML
     private ImageView btnImage;
-    private Button bt1;
-    private Button bt2;
-    private Button bt3;
-    private Button bt4;
+
     @FXML
     private VBox panelBotones;
+    @FXML
+    private Button venbtn1;
+    @FXML
+    private Button venbtn2;
+    @FXML
+    private Button btnComp1;
+    @FXML
+    private Button btnComp2;
+    @FXML
+    private Button venbtn3;
 
     /**
      * Initializes the controller class.
@@ -138,29 +145,25 @@ public class PaginaPrincipalController implements Initializable
 
     private void mostrarVendedor() {
 
-        Button bt1 = new Button("Registrar un nuevo vendedor");
-        Button bt2 = new Button("Ingresar un nuevo vehículo");
-        Button bt3 = new Button("Aceptar oferta");
         //Button bt4 = new Button("Regresar");
         panelBotones.getChildren().clear();
         
         panelBotones.getChildren().add(btnImage);
-        panelBotones.getChildren().add(bt1);
-        panelBotones.getChildren().add(bt2);
-        panelBotones.getChildren().add(bt3);
+        panelBotones.getChildren().add(venbtn1);
+        panelBotones.getChildren().add(venbtn2);
+        panelBotones.getChildren().add(venbtn3);
         panelBotones.getChildren().add(salirbtn);
     
     }
     
-    private void mostrarComprador() {
+    private void mostrarComprador() 
+    {
     
-            Button bt1 = new Button("Registrar un nuevo comprador");
-            Button bt2 = new Button("Ofertar por un vehículo");
-            //Button bt3 = new Button("Regresar");
+
             panelBotones.getChildren().clear();
             panelBotones.getChildren().add(btnImage);
-            panelBotones.getChildren().add(bt1);
-            panelBotones.getChildren().add(bt2);
+            panelBotones.getChildren().add(btnComp1);
+            panelBotones.getChildren().add(btnComp2);
             panelBotones.getChildren().add(salirbtn);
   
                 
@@ -168,23 +171,36 @@ public class PaginaPrincipalController implements Initializable
     
     private void mostrarAmbos()
     {
-        Button bt1 = new Button("Registrar un nuevo vendedor");
-        Button bt2 = new Button("Ingresar un nuevo vehículo");
-        Button bt3 = new Button("Aceptar oferta");
-        
+
         panelBotones.getChildren().clear();
         panelBotones.getChildren().add(btnImage);
-        panelBotones.getChildren().add(bt1);
-        panelBotones.getChildren().add(bt2);
-        panelBotones.getChildren().add(bt3);
+        panelBotones.getChildren().add(venbtn1);
+        panelBotones.getChildren().add(venbtn2);
+        panelBotones.getChildren().add(venbtn3);
+        panelBotones.getChildren().add(btnComp1);
+        panelBotones.getChildren().add(btnComp2);
         
-        Button btt1 = new Button("Registrar un nuevo comprador");
-        Button btt2 = new Button("Ofertar por un vehículo");
-        
-        
-        panelBotones.getChildren().add(btt1);
-        panelBotones.getChildren().add(btt2);
         panelBotones.getChildren().add(salirbtn);
+    }
+
+    @FXML
+    private void botonRegistrarVendedor(MouseEvent event) {
+    }
+
+    @FXML
+    private void botonIngresarVehiculo(MouseEvent event) {
+    }
+
+    @FXML
+    private void botonAceptarOfertas(MouseEvent event) {
+    }
+
+    @FXML
+    private void botonRegistrarComprador(MouseEvent event) {
+    }
+
+    @FXML
+    private void botonRealizarOferta(MouseEvent event) {
     }
 }
 
