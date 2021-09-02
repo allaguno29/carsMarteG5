@@ -231,4 +231,11 @@ public class Util {
            throw mex;
         }
     }
+    public static void mostrarLlenar() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText(null);
+        alert.setTitle("Campo Incompleto");
+        alert.setContentText("Llenar todos los campos");
+        alert.showAndWait();
+    }
 }
