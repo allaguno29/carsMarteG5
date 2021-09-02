@@ -202,7 +202,8 @@ public class PaginaPrincipalController implements Initializable
     private void botonRegistrarVendedor(MouseEvent event) 
     {
         //////////////////////////////////////
-        
+        double wrappingW = 80;
+        double spacing = 60;
         VBox vbox= new VBox();
         vbox.setAlignment(Pos.CENTER);
         scrollpane.setContent(vbox);
@@ -212,50 +213,68 @@ public class PaginaPrincipalController implements Initializable
         ////////////////////////////////////////
         
         HBox hbox1 = new HBox();
-        hbox1.setSpacing(60);
+        hbox1.setSpacing(spacing);
+        hbox1.setPadding(new Insets(30,0,0,0));
         Text nombret = new Text("Nombres:");
+        nombret.setWrappingWidth(wrappingW);
+        
         TextField nombretf = new TextField();
         hbox1.getChildren().add(nombret);
         hbox1.getChildren().add(nombretf);
         
         HBox hbox2 = new HBox();
-        hbox2.setSpacing(60);
+        hbox2.setSpacing(spacing);
+        hbox2.setPadding(new Insets(30,0,0,0));
         Text apellidot= new Text("Apellidos:");
+        
+        apellidot.setWrappingWidth(wrappingW);
         TextField apellidotf = new TextField();
         hbox2.getChildren().add(apellidot);
         hbox2.getChildren().add(apellidotf);
         
         HBox hbox3 = new HBox();
-        hbox3.setSpacing(60);
+        hbox3.setSpacing(spacing);
+        
+        hbox3.setPadding(new Insets(30,0,0,0));
         Text correot = new Text("Correo:");
+        
+        correot.setWrappingWidth(wrappingW);
         TextField correotf = new TextField();
         hbox3.getChildren().add(correot);
         hbox3.getChildren().add(correotf);
         
         HBox hbox4 = new HBox();
         
-        hbox4.setSpacing(60);
+        hbox4.setSpacing(spacing);
+        hbox4.setPadding(new Insets(30,0,0,0));
         Text orgt= new Text("Organización:");
+        
+        orgt.setWrappingWidth(wrappingW);
         TextField orgtf = new TextField();
         hbox4.getChildren().add(orgt);
         hbox4.getChildren().add(orgtf);
         
         HBox hbox5 = new HBox();
-        hbox5.setSpacing(60);
+        hbox5.setSpacing(spacing);
+        hbox5.setPadding(new Insets(30,0,0,0));
         Text clavet = new Text("Clave:");
+        
+        clavet.setWrappingWidth(wrappingW);
         PasswordField clavetf = new PasswordField();
         hbox5.getChildren().add(clavet);
         hbox5.getChildren().add(clavetf);     
         
         HBox hbox6 = new HBox();
         
-        hbox6.setSpacing(60);
+        hbox6.setSpacing(spacing);
+        hbox6.setPadding(new Insets(30,0,0,0));
         CheckBox checkV = new CheckBox("Vendedor");
         CheckBox checkC = new CheckBox("Comprador");
         hbox6.getChildren().add(checkV);
         hbox6.getChildren().add(checkC);
         Button btnRegister = new Button("Registrar");
-          
+        
+        VBox.setMargin(btnRegister,new Insets(30,0,0,0));
         
         //////////////////////////////////////////////////
         
@@ -269,15 +288,19 @@ public class PaginaPrincipalController implements Initializable
         
         ///////////////////////////////////////////////////
         
-        String nombre = nombretf.getText();
-        String apellido = apellidotf.getText();
-        String organizacion = orgtf.getText();
-        String correo = correotf.getText();   
-        String cla = clavetf.getText();
         
         ///////////////////////////////////////////////////
         btnRegister.setOnMouseClicked((MouseEvent evento)-> 
         {
+            String nombre = nombretf.getText();
+            String apellido = apellidotf.getText();
+            String organizacion = orgtf.getText();
+            String correo = correotf.getText();   
+            String cla = clavetf.getText();
+            System.out.println(correo);
+            System.out.println(cla);
+            System.out.println(correo);
+            
             if(!nombretf.getText().isEmpty() && !apellidotf.getText().isEmpty() &&
                 !correotf.getText().isEmpty() && !orgtf.getText().isEmpty() &&
                 !clavetf.getText().isEmpty())
@@ -285,22 +308,22 @@ public class PaginaPrincipalController implements Initializable
                 if (checkV.isSelected() && !checkC.isSelected()) 
                 {
 
-                   //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
+                   //Solo si el registro fue exitoso la funcion devuelve true 
                     if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.VENDEDOR))
                     {
-                        Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
-                        a.show();
+                        //Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
+                        //a.show();
                     }
 
                 }
 
                 if (checkC.isSelected() && !checkV.isSelected()) 
                 {
-                    //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
+                    //Solo si el registro fue exitoso la funcion devuelve true 
                     if(Comprador.registrarComprador(nombre, apellido, organizacion, correo, cla))
                     {
-                        Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
-                        a.show();  
+                        //Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
+                        //a.show();  
                     }
 
                 }
@@ -309,11 +332,11 @@ public class PaginaPrincipalController implements Initializable
                 {
 
 
-                    //Solo si el registro fue exitoso la funcion devuelve true y se cambia al login
+                    //Solo si el registro fue exitoso la funcion devuelve true 
                     if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.AMBOS))
                     {
-                        Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
-                        a.show();   
+                        //Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
+                        //a.show();   
                     }
 
                 }
