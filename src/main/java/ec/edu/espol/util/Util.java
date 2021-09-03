@@ -203,7 +203,7 @@ public class Util {
     {
 
         String to = correo;
-        String from = "freddyprueba75";//correoEmisor;
+        String from = "carsmatetemp";//correoEmisor;
         
 //String host = "localhost";
         
@@ -211,7 +211,7 @@ public class Util {
         Properties props = System.getProperties();
         props.put("mail.smtp.host", "smtp.gmail.com");  //El servidor SMTP de Google
         props.put("mail.smtp.user", from);
-        props.put("mail.smtp.clave", "proyecto8");    //La clave de la cuenta
+        props.put("mail.smtp.clave", "proyectog5");    //La clave de la cuenta
         props.put("mail.smtp.auth", "true");    //Usar autenticación mediante usuario y clave
         props.put("mail.smtp.starttls.enable", "true"); //Para conectar de manera segura al servidor SMTP
         props.put("mail.smtp.port", "587"); //El puerto SMTP seguro de Google
@@ -229,7 +229,7 @@ public class Util {
            message.setText("Felicidades, su oferta ha sido aceptada por un vendedor.");
            // Send message
             Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", from, "proyecto8");
+            transport.connect("smtp.gmail.com", from, "proyectog5");
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
             
