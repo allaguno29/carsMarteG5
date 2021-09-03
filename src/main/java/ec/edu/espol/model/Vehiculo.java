@@ -6,6 +6,7 @@
 package ec.edu.espol.model;
 
 import ec.edu.espol.util.Util;
+import static ec.edu.espol.util.Util.mostrarWarning;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +16,18 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  *
@@ -31,7 +44,6 @@ public class Vehiculo implements Serializable{
     protected String combustible;
     protected double precio;
     protected transient double prioridad; 
-    
     private static final long serialVersionUID = -12345L;
     
     public Vehiculo(String placa, String marca, String modelo, String motor, int año, double recorrido, String color, String combustible, double precio) {
@@ -117,14 +129,13 @@ public class Vehiculo implements Serializable{
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
     public double getPrioridad() {
         return prioridad;
     }
 
     public void setPrioridad(double prioridad) {
-        this.prioridad = prioridad;
-    }
+        this.prioridad = prioridad;  
+    }  
     
     //FUNCION LISTA - LOGICA PARALELA NO DEBERIA DAR PROBLEMAS
     public void saveFile(String filename)
