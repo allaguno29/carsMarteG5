@@ -30,6 +30,7 @@ public class Vehiculo implements Serializable{
     protected String color;
     protected String combustible;
     protected double precio;
+    protected transient double prioridad; 
     
     private static final long serialVersionUID = -12345L;
     
@@ -115,6 +116,14 @@ public class Vehiculo implements Serializable{
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public double getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(double prioridad) {
+        this.prioridad = prioridad;
     }
     
     //FUNCION LISTA - LOGICA PARALELA NO DEBERIA DAR PROBLEMAS

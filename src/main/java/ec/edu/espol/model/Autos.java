@@ -158,7 +158,7 @@ public class Autos extends Vehiculo implements Serializable
                 Autos auto= new Autos(vidrios.getText(),placa.getText(),marca.getText(),modelo.getText(),motor.getText(),añov,recorridov,color.getText(),
                                             combustible.getText(),preciov,transmision.getText());
                 auto.saveFile("vehiculos.ser");
-                auto.saveFile("camionetas.ser");
+                auto.saveFile("autos.ser");
                 Alert a = new Alert(AlertType.INFORMATION,"Registro del Vehiculo exitoso");
                 a.show();
                 sp.setContent(null);

@@ -121,7 +121,7 @@ public class Motos extends Vehiculo implements Serializable{
                 Motos moto= new Motos(placa.getText(),marca.getText(),modelo.getText(),motor.getText(),añov,recorridov,color.getText(),
                                             combustible.getText(),preciov);
                 moto.saveFile("vehiculos.ser");
-                moto.saveFile("camionetas.ser");
+                moto.saveFile("motos.ser");
                 Alert a = new Alert(Alert.AlertType.INFORMATION,"Registro del Vehiculo exitoso");
                 a.show();
                 sp.setContent(null);

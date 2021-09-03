@@ -81,7 +81,7 @@ public class PaginaPrincipalController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {  
         this.personas = Util.readPersonasFile("usuarios.ser");
-        this.ofertas=Oferta.extraerOferta("ofertas.ser");
+        this.ofertas=Util.readOfertasFile("ofertas.ser");
 
         
 
@@ -415,6 +415,7 @@ public class PaginaPrincipalController implements Initializable
                 hbox.getChildren().add(precio);
                 hbox.getChildren().add(placa);
                 hbox.getChildren().add(boton);
+                vbox.getChildren().add(hbox);
         }
     }
     
@@ -535,6 +536,7 @@ public class PaginaPrincipalController implements Initializable
 
     @FXML
     private void botonRealizarOferta(MouseEvent event) {
+        Oferta.realizarOferta(scrollpane,correoUser);
     }
 }
 
