@@ -10,11 +10,19 @@ import ec.edu.espol.model.Camioneta;
 import ec.edu.espol.model.Comprador;
 import ec.edu.espol.model.Motos;
 import ec.edu.espol.model.Persona;
+import ec.edu.espol.model.Vehiculo;
 import ec.edu.espol.model.Vendedor;
 import ec.edu.espol.util.Rol;
 import ec.edu.espol.util.Util;
+import static ec.edu.espol.util.Util.mostrarWarning;
 import ec.edu.espol.vendedorcarrosg5.App;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -30,11 +38,15 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -47,7 +59,7 @@ public class PaginaPrincipalController implements Initializable
     private ArrayList<Persona> personas;
     private Persona usuario;
     private String correoUser;
-    
+    private String vehactual;
 
     @FXML
     private Button salirbtn;
@@ -69,6 +81,88 @@ public class PaginaPrincipalController implements Initializable
     private Button venbtn3;
     @FXML
     private ScrollPane scrollpane; // Ajustar el tamañano para que se vea bien en pantalla completa ARIANA!!!!!
+    @FXML
+    private VBox vboxexpoveh;
+    @FXML
+    private HBox plabox;
+    @FXML
+    private Text plabox_t;
+    @FXML
+    private TextField plabox_tf;
+    @FXML
+    private HBox marbox;
+    @FXML
+    private Text marbox_t;
+    @FXML
+    private TextField marbox_tf;
+    @FXML
+    private HBox modbox;
+    @FXML
+    private Text modbox_t;
+    @FXML
+    private TextField modbox_tf;
+    @FXML
+    private HBox tmotorbox;
+    @FXML
+    private Text tmotor_t;
+    @FXML
+    private TextField tmotorbox_tf;
+    @FXML
+    private HBox aniobox;
+    @FXML
+    private Text aniobox_t;
+    @FXML
+    private TextField aniobox_tf;
+    @FXML
+    private HBox recorbox;
+    @FXML
+    private Text recorbox_t;
+    @FXML
+    private TextField recorbox_tf;
+    @FXML
+    private HBox tcombox;
+    @FXML
+    private Text tcombox_t;
+    @FXML
+    private TextField tcombox_tf;
+    @FXML
+    private HBox colbox;
+    @FXML
+    private Text colbox_t;
+    @FXML
+    private TextField colbox_tf;
+    @FXML
+    private HBox vidbox;
+    @FXML
+    private Text vidbox_t;
+    @FXML
+    private TextField vidbox_tf;
+    @FXML
+    private HBox transbox;
+    @FXML
+    private Text transbox_t;
+    @FXML
+    private TextField transbox_tf;
+    @FXML
+    private HBox tracbox;
+    @FXML
+    private Text tracbox_t;
+    @FXML
+    private TextField tracbox_tf;
+    @FXML
+    private HBox prebox;
+    @FXML
+    private Text prebox_t;
+    @FXML
+    private TextField prebox_tf;
+    @FXML
+    private Button regvehbtn;
+    @FXML
+    private HBox fotobox;
+    @FXML
+    private Button fotobox_btn;
+    @FXML
+    private TextField fotobox_tf;
     
 
     /**
@@ -78,6 +172,7 @@ public class PaginaPrincipalController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {  
         this.personas = Util.readPersonasFile("usuarios.ser");
+        scrollpane.setContent(null);
 
         
 
@@ -357,7 +452,8 @@ public class PaginaPrincipalController implements Initializable
     }
 
     @FXML
-    private void botonIngresarVehiculo(MouseEvent event) {
+    private void botonIngresarVehiculo(MouseEvent event) 
+    {
         scrollpane.setContent(null);
         HBox hbox= new HBox();
         hbox.setAlignment(Pos.CENTER);
@@ -371,17 +467,84 @@ public class PaginaPrincipalController implements Initializable
         hbox.getChildren().add(moto);
         hbox.setPadding(new Insets(20));
         hbox.setSpacing(20);
-        auto.setOnMouseClicked((MouseEvent evento)->{
-            Autos.registrarAuto(scrollpane);
-        });
-        camioneta.setOnMouseClicked((MouseEvent evento)->{
-            Camioneta.registrarCamioneta(scrollpane);
-        });
-        moto.setOnMouseClicked((MouseEvent evento)->{
-            Motos.registrarMoto(scrollpane);
-        });
-    }
+        //Vehiculo container = new Vehiculo("","","","",0,0,"","",0);
+        fotobox_btn.setOnMouseClicked(evento -> { 
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Buscar Imagen");
 
+                // Agregar filtros para facilitar la busqueda
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("All Images", "*.*"),
+                        new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                        new FileChooser.ExtensionFilter("PNG", "*.png")
+                );
+
+                //hbox.getChildren().add(imagen);
+                // Obtener la imagen seleccionada
+                Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+                File imgFile = fileChooser.showOpenDialog(owner);
+                
+
+                // Mostar la imagen
+                if (imgFile != null) {
+                    Image img = new Image("file:" + imgFile.getAbsolutePath());
+                    String imgpath = img.getUrl().substring(5,img.getUrl().length());
+                    fotobox_tf.setText(imgpath);
+                    copyFile(imgpath, "images/"+plabox_tf.getText() + ".jpg");//);
+                    //container.setFoto(img);
+
+                }
+                else
+                {
+                    mostrarWarning("Error", "Foto no encontrada");
+                }
+            });
+        //SE DESPLIEGAN LOS FORMULARIOS DE AUTO
+        auto.setOnMouseClicked((MouseEvent evento)->
+            {
+                vehactual = "auto";
+                scrollpane.setContent(null);
+                
+                tracbox_tf.setEditable(false);
+                vidbox_tf.setEditable(true);
+                transbox_tf.setEditable(true);
+                
+                scrollpane.setContent(vboxexpoveh);
+            });
+                ///////////CONTROLADOR DEL BOTON CAMIONETA
+        camioneta.setOnMouseClicked((MouseEvent evento2)->
+            {
+                scrollpane.setContent(null);
+                //scrollpane.setContent(vboxexpoveh);
+                tracbox_tf.setEditable(true);
+                vidbox_tf.setEditable(true);
+                transbox_tf.setEditable(true);
+                
+                vehactual = "camioneta";
+                Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+                owner.setHeight(620);
+                
+                scrollpane.setContent(vboxexpoveh);
+                //Camioneta.registrarCamioneta(scrollpane);
+            });
+        moto.setOnMouseClicked((MouseEvent evento3)->
+            {   
+                vehactual = "moto";
+                scrollpane.setContent(null);
+                //scrollpane.setContent(vboxexpoveh);
+                tracbox_tf.setEditable(false);
+                vidbox_tf.setEditable(false);
+                transbox_tf.setEditable(false);
+                
+                scrollpane.setContent(vboxexpoveh);
+               // Motos.registrarMoto(scrollpane);
+            });
+        
+        
+    }
+    
+    
+      
     @FXML
     private void botonAceptarOfertas(MouseEvent event) 
     {
@@ -502,9 +665,143 @@ public class PaginaPrincipalController implements Initializable
         
     }
 
+    public static void copyFile(String inputPath, String outputPath) 
+    {
+
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            in = new FileInputStream(inputPath);
+            out = new FileOutputStream(outputPath);
+
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = in.read(buffer)) != -1) {
+                out.write(buffer, 0, read);
+            }
+            in.close();
+            in = null;
+
+            // write the output file (You have now copied the file)
+            out.flush();
+            out.close();
+            out = null;
+
+            System.out.println("Copied file to " + outputPath);
+
+        } catch (FileNotFoundException fnfe1) {
+            System.out.println(fnfe1.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
     @FXML
     private void botonRealizarOferta(MouseEvent event) 
     {
+    }
+
+    @FXML
+    private void btnregveh(MouseEvent event) 
+    {
+        if(!marbox_tf.getText().isEmpty() && !modbox_tf.getText().isEmpty() &&
+                   !tmotorbox_tf.getText().isEmpty() && !aniobox_tf.getText().isEmpty() &&
+                   !recorbox_tf.getText().isEmpty()&&!tcombox_tf.getText().isEmpty()&&
+                   !colbox_tf.getText().isEmpty() && !prebox_tf.getText().isEmpty() && !vidbox_tf.getText().isEmpty()&&
+                   !transbox_tf.getText().isEmpty()  && !plabox_tf.getText().isEmpty() && !fotobox_tf.getText().equals("") && vehactual.equals("auto"))
+                {
+                    try
+                    {
+                        int añov= Integer.parseInt(aniobox_tf.getText());
+                        double recorridov= Double.parseDouble(recorbox_tf.getText());
+                        double preciov=Double.parseDouble(prebox_tf.getText());
+                        Autos autoR= new Autos(vidbox_tf.getText(), plabox_tf.getText(), marbox_tf.getText(), 
+                                modbox_tf.getText(),tmotorbox_tf.getText(),añov,recorridov,colbox_tf.getText(),
+                                        tcombox_tf.getText(), preciov, transbox_tf.getText());
+
+
+
+                        //autoR.setFoto(container.getFoto());
+                        autoR.saveFile("vehiculos.ser");
+                        autoR.saveFile("autos.ser");
+                        Alert a = new Alert(AlertType.INFORMATION, "Creado exitosamente");
+                        a.show();
+                        scrollpane.setContent(null);
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        Util.mostrarWarning("ERROR AL LLENAR CAMPOS", "Año solo permite numeros enteros y kilotraje y precio solo permite decimales.");
+                    }
+                    catch(Exception e)
+                    {
+                         Util.mostrarWarning("ERROR", e.getMessage());
+                    }
+                }
+        else if(!marbox_tf.getText().isEmpty() && !modbox_tf.getText().isEmpty() &&
+                   !tmotorbox_tf.getText().isEmpty() && !aniobox_tf.getText().isEmpty() &&
+                   !recorbox_tf.getText().isEmpty()&&!tcombox_tf.getText().isEmpty()&&
+                   !colbox_tf.getText().isEmpty() && !prebox_tf.getText().isEmpty() && !vidbox_tf.getText().isEmpty()&&
+                   !transbox_tf.getText().isEmpty()  && !plabox_tf.getText().isEmpty() && !fotobox_tf.getText().equals("") && 
+                    !tracbox_tf.getText().isEmpty() && vehactual.equals("camioneta"))
+                {
+                    try
+                    {
+                        int añov= Integer.parseInt(aniobox_tf.getText());
+                        double recorridov= Double.parseDouble(recorbox_tf.getText());
+                        double preciov=Double.parseDouble(prebox_tf.getText());
+                        Camioneta cam= new Camioneta(vidbox_tf.getText(), plabox_tf.getText(), marbox_tf.getText(), 
+                                modbox_tf.getText(),tmotorbox_tf.getText(),añov,recorridov,colbox_tf.getText(),
+                                        tcombox_tf.getText(), preciov, transbox_tf.getText(), tracbox_tf.getText());
+
+
+
+                        cam.saveFile("vehiculos.ser");
+                        cam.saveFile("camionetas.ser");
+                        Alert a = new Alert(AlertType.INFORMATION, "Creado exitosamente");
+                        a.show();
+                        scrollpane.setContent(null);
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        Util.mostrarWarning("ERROR AL LLENAR CAMPOS", "Año solo permite numeros enteros y kilotraje y precio solo permite decimales.");
+                    }
+                    catch(Exception e)
+                    {
+                         Util.mostrarWarning("ERROR", e.getMessage());
+                    }
+                }
+        else if(!marbox_tf.getText().isEmpty() && !modbox_tf.getText().isEmpty() &&
+                   !tmotorbox_tf.getText().isEmpty() && !aniobox_tf.getText().isEmpty() &&
+                   !recorbox_tf.getText().isEmpty()&&!tcombox_tf.getText().isEmpty()&&
+                   !colbox_tf.getText().isEmpty() && !prebox_tf.getText().isEmpty() &&
+                   !plabox_tf.getText().isEmpty() && !fotobox_tf.getText().equals("") && vehactual.equals("moto"))
+                {
+                    try
+                    {
+                        int añov= Integer.parseInt(aniobox_tf.getText());
+                        double recorridov= Double.parseDouble(recorbox_tf.getText());
+                        double preciov=Double.parseDouble(prebox_tf.getText());
+                        Motos mot= new Motos(plabox_tf.getText(), marbox_tf.getText(), 
+                                modbox_tf.getText(),tmotorbox_tf.getText(),añov,recorridov,colbox_tf.getText(),
+                                        tcombox_tf.getText(), preciov);
+
+
+
+                        //autoR.setFoto(container.getFoto());
+                        mot.saveFile("vehiculos.ser");
+                        mot.saveFile("motos.ser");
+                        Alert a = new Alert(AlertType.INFORMATION, "Creado exitosamente");
+                        a.show();
+                        scrollpane.setContent(null);
+                    }
+                    catch(NumberFormatException e)
+                    {
+                        Util.mostrarWarning("ERROR AL LLENAR CAMPOS", "Año solo permite numeros enteros y kilotraje y precio solo permite decimales.");
+                    }
+                    catch(Exception e)
+                    {
+                         Util.mostrarWarning("ERROR", e.getMessage());
+                    }
+                }
     }
 }
 

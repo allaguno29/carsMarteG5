@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="460.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controller.PaginaPrincipalController">
+<HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controller.PaginaPrincipalController">
    <children>
-      <VBox id="navigator" fx:id="panelBotones" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="460.0" prefWidth="180.0">
+      <VBox id="navigator" fx:id="panelBotones" minHeight="-Infinity" prefHeight="600.0" prefWidth="180.0">
          <children>
             <ImageView fx:id="btnImage" fitHeight="190.0" fitWidth="180.0" onMouseClicked="#mostrarPerfil" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -27,9 +30,105 @@
          </children>
       </VBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="420.0">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="420.0">
          <center>
-            <ScrollPane fx:id="scrollpane" fitToHeight="true" fitToWidth="true" prefHeight="455.0" prefWidth="420.0" BorderPane.alignment="CENTER" />
+            <ScrollPane fx:id="scrollpane" fitToHeight="true" fitToWidth="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="420.0" BorderPane.alignment="CENTER">
+               <content>
+                  <VBox fx:id="vboxexpoveh" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox fx:id="plabox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="plabox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Placa" wrappingWidth="80.0" />
+                              <TextField fx:id="plabox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="marbox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="marbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca:" wrappingWidth="80.0" />
+                              <TextField fx:id="marbox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="modbox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="modbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo:" wrappingWidth="80.0" />
+                              <TextField fx:id="modbox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="tmotorbox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="tmotor_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de motor:" wrappingWidth="80.0" />
+                              <TextField fx:id="tmotorbox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="aniobox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="aniobox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Año vehículo:" wrappingWidth="80.0" />
+                              <TextField fx:id="aniobox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="recorbox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="recorbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Recorrido:" wrappingWidth="80.0" />
+                              <TextField fx:id="recorbox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="tcombox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="tcombox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo combustible:" wrappingWidth="80.0" />
+                              <TextField fx:id="tcombox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="colbox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="colbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Color:" wrappingWidth="80.0" />
+                              <TextField fx:id="colbox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="vidbox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="vidbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de vidrios:" wrappingWidth="80.0" />
+                              <TextField fx:id="vidbox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="transbox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="transbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmisión:" wrappingWidth="80.0" />
+                              <TextField fx:id="transbox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="tracbox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="tracbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Tracción:" wrappingWidth="80.0" />
+                              <TextField fx:id="tracbox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="prebox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="prebox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio:" wrappingWidth="80.0" />
+                              <TextField fx:id="prebox_tf" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="fotobox" prefHeight="45.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="fotobox_btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Subir Foto">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                              <TextField fx:id="fotobox_tf" editable="false" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="regvehbtn" mnemonicParsing="false" onMouseClicked="#btnregveh" text="Registrar">
+                           <VBox.margin>
+                              <Insets left="-50.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </VBox>
+               </content></ScrollPane>
          </center>
       </BorderPane>
    </children>

@@ -32,7 +32,7 @@ public class App extends Application
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Login"));
         scene.getStylesheets().add(css);
-        stage.setHeight(500);
+        stage.setHeight(600);
         stage.setScene(scene);
         stage.show();
     }

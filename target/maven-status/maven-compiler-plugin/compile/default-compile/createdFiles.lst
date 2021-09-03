@@ -9,7 +9,6 @@ ec\edu\espol\controller\RegistroController.class
 ec\edu\espol\model\Camioneta.class
 ec\edu\espol\model\Comprador.class
 module-info.class
-ec\edu\espol\model\Autos.class
 ec\edu\espol\model\Persona.class
 ec\edu\espol\model\Vendedor.class
 ec\edu\espol\controller\LoginController.class
