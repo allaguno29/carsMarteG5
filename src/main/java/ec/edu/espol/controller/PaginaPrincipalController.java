@@ -32,6 +32,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -62,10 +64,11 @@ public class PaginaPrincipalController implements Initializable
     private Persona usuario;
     private String correoUser;
     private String vehactual;
+    private String imgpathactual;
 
     @FXML
     private Button salirbtn;
-    private VBox Vcenter;
+    //private VBox Vcenter;
     @FXML
     private ImageView btnImage;
 
@@ -174,7 +177,7 @@ public class PaginaPrincipalController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {  
         this.personas = Util.readPersonasFile("usuarios.ser");
-        this.ofertas=Util.readOfertasFile("ofertas.ser");
+        
         scrollpane.setContent(null);
 
     }
@@ -187,6 +190,8 @@ public class PaginaPrincipalController implements Initializable
     
     public void mostrarBotones()
     {
+        
+        personas = Util.readPersonasFile("usuarios.ser");
         for (Persona p: personas)
         {
             if(p.getCorreo().equals(correoUser))
@@ -226,28 +231,148 @@ public class PaginaPrincipalController implements Initializable
 
     @FXML // Muestra el perfil de cada usuario
     private void mostrarPerfil(MouseEvent event) throws IOException {
-        for(Persona p : personas ){ 
-            Text nomb = new Text("Nombres");
-            Text nombre = new Text(p.getNombres());
-            Text ape = new Text("Apellidos");
-            Text Apellido = new Text(p.getApellidos());
-            Text org = new Text("Organizacion");
-            Text Organizacion = new Text(p.getOrganizacion());
-            Text cor = new Text("Correo");
-            Text Correo = new Text(p.getCorreo());
-            Button btCla = new Button("Cambiar Clave");
-            Button btRol = new Button("Cambiar Rol");
-            Vcenter.getChildren().clear();
-            Vcenter.getChildren().add(nomb);
-            Vcenter.getChildren().add(nombre);
-            Vcenter.getChildren().add(ape);
-            Vcenter.getChildren().add(Apellido);
-            Vcenter.getChildren().add(org);
-            Vcenter.getChildren().add(Organizacion);
-            Vcenter.getChildren().add(cor);
-            Vcenter.getChildren().add(Correo);
-            Vcenter.getChildren().add(btCla);
-            Vcenter.getChildren().add(btRol); 
+        personas = Util.readPersonasFile("usuarios.ser");
+        for(Persona p : personas )
+        { 
+            if(p.getCorreo().equals(correoUser))
+            {
+                scrollpane.setContent(null);
+
+                double wrappingW = 80;
+                double spacing = 20;
+                VBox Vcenter= new VBox();
+                //Vcenter.setSpacing(spacing);
+                Vcenter.setAlignment(Pos.CENTER);
+                Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+                owner.setHeight(600);
+                scrollpane.setContent(Vcenter);
+
+                Vcenter.setPadding(new Insets(45, 0, 0, 45));
+                
+                HBox h1 = new HBox();
+                h1.setPadding(new Insets(30,0,0,0));
+                h1.setSpacing(spacing);
+                
+                Text nomb = new Text("Nombres:");
+                nomb.setWrappingWidth(wrappingW);
+                Text nombre = new Text(p.getNombres());
+                nombre.setWrappingWidth(wrappingW);
+                h1.getChildren().add(nomb);
+                h1.getChildren().add(nombre);
+                
+                HBox h2 = new HBox();
+                h2.setSpacing(spacing);
+                h2.setPadding(new Insets(30,0,0,0));
+                Text ape = new Text("Apellidos:");
+                ape.setWrappingWidth(wrappingW);
+                Text Apellido = new Text(p.getApellidos());
+                h2.getChildren().add(ape);
+                h2.getChildren().add(Apellido);
+                
+                HBox h3 = new HBox();
+                h3.setSpacing(spacing);   
+                h3.setPadding(new Insets(30,0,0,0));             
+                Text org = new Text("Organizacion:");
+                org.setWrappingWidth(wrappingW);
+                Text Organizacion = new Text(p.getOrganizacion());
+                h3.getChildren().add(org);
+                h3.getChildren().add(Organizacion);
+                
+                HBox h4 = new HBox();
+                h4.setSpacing(spacing);  
+                h4.setPadding(new Insets(30,0,0,0));              
+                Text cor = new Text("Correo:");
+                cor.setWrappingWidth(wrappingW);
+                Text Correo = new Text(p.getCorreo());
+                h4.getChildren().add(cor);
+                h4.getChildren().add(Correo);
+                
+                HBox hx = new HBox();
+                hx.setSpacing(spacing);  
+                hx.setPadding(new Insets(30,0,0,0));              
+                Text rol = new Text("Rol:");
+                rol.setWrappingWidth(wrappingW);
+                Text roll = new Text((p.getRol().equals(Rol.AMBOS))? "Ambos" :
+                        (p.getRol().equals(Rol.VENDEDOR))? "Vendedor": "Comprador");
+                hx.getChildren().add(rol);
+                hx.getChildren().add(roll);
+                hx.setSpacing(spacing);
+                hx.setPadding(new Insets(30,0,0,0));
+                
+                HBox h5 = new HBox();
+                h5.setPadding(new Insets(30,0,0,0));
+                h5.setSpacing(spacing);
+                Button btCla = new Button("Cambiar Clave");
+                btCla.setOnMouseClicked(eventn -> {
+                    
+                    Stage pop = new Stage();
+                    String fxml = "cambioclave";
+                    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                    
+                    try 
+                    {
+                        //FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PaginaPrincipal.fxml"));
+                        Parent root = (Parent) fxmlLoader.load();
+
+
+                        
+                        Scene popupscene = new Scene(root);
+                        
+                        pop.setScene(popupscene);
+                        pop.show();
+                        
+                        CambioclaveController cc = fxmlLoader.getController();
+                        cc.setCorreoActual(correoUser);
+                        scrollpane.setContent(null);
+                        
+                    } 
+                    catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                
+                
+                Button btRol = new Button("Cambiar Rol");
+                btRol.setOnMouseClicked(eventn2 -> {
+                    
+                    Stage pop = new Stage();
+                    String fxml = "cambiorol";
+                    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+                    
+                    try 
+                    {
+                        //FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PaginaPrincipal.fxml"));
+                        Parent root = (Parent) fxmlLoader.load();
+
+
+                        
+                        Scene popupscene = new Scene(root);
+                        
+                        pop.setScene(popupscene);
+                        pop.show();
+                        
+                        CambiorolController cc = fxmlLoader.getController();
+                        cc.setCorreoActual(correoUser);
+                        scrollpane.setContent(null);
+                        
+                    } 
+                    catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                h5.getChildren().add(btCla);
+                h5.getChildren().add(btRol);
+                
+                Vcenter.getChildren().clear();
+               
+                Vcenter.getChildren().add(h1);
+                Vcenter.getChildren().add(h2);
+                Vcenter.getChildren().add(h3);
+                Vcenter.getChildren().add(h4);
+                Vcenter.getChildren().add(hx);
+                Vcenter.getChildren().add(h5);
+            }
+            
 
 
     
@@ -301,7 +426,10 @@ public class PaginaPrincipalController implements Initializable
         double spacing = 60;
         VBox vbox= new VBox();
         vbox.setAlignment(Pos.CENTER);
+        Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        owner.setHeight(600);
         scrollpane.setContent(vbox);
+        
         vbox.setPadding(new Insets(45, 0, 0, 45));
         
         
@@ -402,38 +530,20 @@ public class PaginaPrincipalController implements Initializable
             {  
                 if (checkV.isSelected() && !checkC.isSelected()) 
                 {
-
-                   //Solo si el registro fue exitoso la funcion devuelve true 
-                    if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.VENDEDOR))
-                    {
-                        //Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
-                        //a.show();
-                    }
-
+                    if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.VENDEDOR)){}
                 }
 
                 if (checkC.isSelected() && !checkV.isSelected()) 
                 {
                     //Solo si el registro fue exitoso la funcion devuelve true 
-                    if(Comprador.registrarComprador(nombre, apellido, organizacion, correo, cla))
-                    {
-                        //Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
-                        //a.show();  
-                    }
+                    if(Comprador.registrarComprador(nombre, apellido, organizacion, correo, cla)){}
 
                 }
 
                 if (checkV.isSelected() && checkC.isSelected()) 
                 {
-
-
                     //Solo si el registro fue exitoso la funcion devuelve true 
-                    if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.AMBOS))
-                    {
-                        //Alert a = new Alert(AlertType.INFORMATION, "¡Registro exitoso!"); 
-                        //a.show();   
-                    }
-
+                    if(Vendedor.RegistrarVendedor(nombre, apellido, organizacion, correo, cla, Rol.AMBOS)){}
                 }
             }
             else if (!checkV.isSelected() && !checkC.isSelected()) 
@@ -457,7 +567,7 @@ public class PaginaPrincipalController implements Initializable
         scrollpane.setContent(null);
         HBox hbox= new HBox();
         hbox.setAlignment(Pos.CENTER);
-        scrollpane.setPadding(new Insets(80));
+        //scrollpane.setPadding(new Insets(80));
         scrollpane.setContent(hbox);
         Button auto= new Button("Auto");
         Button camioneta= new Button("Camioneta");
@@ -467,7 +577,6 @@ public class PaginaPrincipalController implements Initializable
         hbox.getChildren().add(moto);
         hbox.setPadding(new Insets(20));
         hbox.setSpacing(20);
-        //Vehiculo container = new Vehiculo("","","","",0,0,"","",0);
         fotobox_btn.setOnMouseClicked(evento -> { 
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Buscar Imagen");
@@ -486,11 +595,12 @@ public class PaginaPrincipalController implements Initializable
                 
 
                 // Mostar la imagen
-                if (imgFile != null) {
+                if (imgFile != null ) 
+                {
                     Image img = new Image("file:" + imgFile.getAbsolutePath());
-                    String imgpath = img.getUrl().substring(5,img.getUrl().length());
-                    fotobox_tf.setText(imgpath);
-                    copyFile(imgpath, "images/"+plabox_tf.getText() + ".jpg");//);
+                    imgpathactual = img.getUrl().substring(5,img.getUrl().length());
+                    fotobox_tf.setText(imgpathactual);
+                    
                     //container.setFoto(img);
 
                 }
@@ -505,9 +615,11 @@ public class PaginaPrincipalController implements Initializable
                 vehactual = "auto";
                 scrollpane.setContent(null);
                 
-                tracbox_tf.setEditable(false);
-                vidbox_tf.setEditable(true);
-                transbox_tf.setEditable(true);
+                //tracbox_tf.setEditable(false);
+                tracbox_tf.setDisable(true);
+                vidbox_tf.setDisable(false);
+                transbox_tf.setDisable(false);
+                
                 
                 scrollpane.setContent(vboxexpoveh);
             });
@@ -516,13 +628,19 @@ public class PaginaPrincipalController implements Initializable
             {
                 scrollpane.setContent(null);
                 //scrollpane.setContent(vboxexpoveh);
-                tracbox_tf.setEditable(true);
-                vidbox_tf.setEditable(true);
-                transbox_tf.setEditable(true);
+                //tracbox_tf.setEditable(true);
+                //vidbox_tf.setEditable(true);
+                //transbox_tf.setEditable(true);
+                tracbox_tf.setDisable(false);
+                vidbox_tf.setDisable(false);
+                transbox_tf.setDisable(false);
+                
                 
                 vehactual = "camioneta";
-                Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
-                owner.setHeight(620);
+               // Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+                //scrollpane.setMinWidth(owner.getWidth());
+                //scrollpane.setMinHeight(owner.getHeight() + 20);
+                //owner.setHeight(owner.getHeight()+60);
                 
                 scrollpane.setContent(vboxexpoveh);
                 //Camioneta.registrarCamioneta(scrollpane);
@@ -532,9 +650,10 @@ public class PaginaPrincipalController implements Initializable
                 vehactual = "moto";
                 scrollpane.setContent(null);
                 //scrollpane.setContent(vboxexpoveh);
-                tracbox_tf.setEditable(false);
-                vidbox_tf.setEditable(false);
-                transbox_tf.setEditable(false);
+                
+                tracbox_tf.setDisable(true);
+                vidbox_tf.setDisable(true);
+                transbox_tf.setDisable(true);
                 
                 scrollpane.setContent(vboxexpoveh);
                // Motos.registrarMoto(scrollpane);
@@ -546,33 +665,53 @@ public class PaginaPrincipalController implements Initializable
     
       
     @FXML
-    private void botonAceptarOfertas(MouseEvent event) {
+    private void botonAceptarOfertas(MouseEvent event)
+    {
+        this.ofertas=Util.readOfertasFile("ofertas.ser");
         scrollpane.setContent(null);
         ofertas.sort(Oferta:: compareTo);
         VBox vbox= new VBox();
+        vbox.setPadding(new Insets(45, 0, 0, 5));
         scrollpane.setContent(vbox);
+        scrollpane.setMinWidth(scrollpane.getMinWidth() + 50);
+        Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
+        owner.setHeight(scrollpane.getMinWidth() + 50);
+        
         for(Oferta o:ofertas){
                 HBox hbox = new HBox();
-                Image foto= new Image("img/"+o.getPlaca()+".jpg");
+                hbox.setSpacing(25);
+
+                VBox minibox = new VBox();
+                
+                File imgfile = new File("images/"+o.getPlaca()+".jpg");
+                Image foto= new Image("file:" + imgfile.getAbsolutePath());
+                
                 ImageView im= new ImageView(foto);
-                Text comprador= new Text(o.getCorreo());
-                Text precio= new Text(""+o.getPrecio());
-                Text placa= new Text(o.getPlaca());
+                im.setFitWidth(140);
+                im.setFitHeight(100);
+                
+                Text comprador= new Text("Usuario:   " + o.getCorreo());
+                Text precio= new Text("Precio:  $"+o.getPrecio());
+                Text placa= new Text("Placa:   " + o.getPlaca());
+                minibox.getChildren().add(comprador);
+                minibox.getChildren().add(precio);
+                minibox.getChildren().add(placa);
+                
                 Button boton= new Button();
                 boton.setText("Aceptar");
                 boton.setOnMouseClicked((MouseEvent evento)->{
                     Oferta.removerOferta("ofertas.ser", o);
-                try {
-                    Util.enviarCorreo(o.getCorreo(),usuario.getCorreo());
-                } catch (MessagingException ex) {
-                    Util.mostrarWarning("ERROR DE MENSAJERIA",ex.getMessage());
-                }
-                this.botonAceptarOfertas(event);
+                    try {
+                        Util.enviarCorreo(o.getCorreo(),usuario.getCorreo());
+                    } 
+                    catch (MessagingException ex) {
+                        Util.mostrarWarning("ERROR DE MENSAJERIA",ex.getMessage());
+                    }
+                    scrollpane.setContent(null);
+                    //this.botonAceptarOfertas(event);
                 });
                 hbox.getChildren().add(im);
-                hbox.getChildren().add(comprador);
-                hbox.getChildren().add(precio);
-                hbox.getChildren().add(placa);
+                hbox.getChildren().add(minibox);
                 hbox.getChildren().add(boton);
                 vbox.getChildren().add(hbox);
         }
@@ -580,7 +719,8 @@ public class PaginaPrincipalController implements Initializable
     
 
     @FXML
-    private void botonRegistrarComprador(MouseEvent event) {
+    private void botonRegistrarComprador(MouseEvent event)
+    {
         //////////////////////////////////////
         double wrappingW = 80;
         double spacing = 60;
@@ -724,7 +864,8 @@ public class PaginaPrincipalController implements Initializable
         }
     }
     @FXML
-    private void botonRealizarOferta(MouseEvent event) {
+    private void botonRealizarOferta(MouseEvent event)
+    {
         Oferta.realizarOferta(scrollpane,correoUser);
     }
 
@@ -747,8 +888,7 @@ public class PaginaPrincipalController implements Initializable
                                         tcombox_tf.getText(), preciov, transbox_tf.getText());
 
 
-
-                        //autoR.setFoto(container.getFoto());
+                        copyFile(imgpathactual, "images/"+plabox_tf.getText() + ".jpg");//);
                         autoR.saveFile("vehiculos.ser");
                         autoR.saveFile("autos.ser");
                         Alert a = new Alert(AlertType.INFORMATION, "Creado exitosamente");
@@ -782,6 +922,7 @@ public class PaginaPrincipalController implements Initializable
 
 
 
+                        copyFile(imgpathactual, "images/"+plabox_tf.getText() + ".jpg");//);
                         cam.saveFile("vehiculos.ser");
                         cam.saveFile("camionetas.ser");
                         Alert a = new Alert(AlertType.INFORMATION, "Creado exitosamente");
@@ -815,6 +956,8 @@ public class PaginaPrincipalController implements Initializable
 
 
                         //autoR.setFoto(container.getFoto());
+
+                        copyFile(imgpathactual, "images/"+plabox_tf.getText() + ".jpg");//);
                         mot.saveFile("vehiculos.ser");
                         mot.saveFile("motos.ser");
                         Alert a = new Alert(AlertType.INFORMATION, "Creado exitosamente");

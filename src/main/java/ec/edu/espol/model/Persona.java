@@ -6,7 +6,12 @@
 package ec.edu.espol.model;
 import ec.edu.espol.util.Rol;
 import ec.edu.espol.util.Util;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 /**
  *
  * @author Josue Vera + Andres Porras
@@ -86,7 +91,7 @@ public class Persona implements Serializable{
 
     public void setClave(String clave) 
     {
-        this.clave = Util.convertirSHA256(clave);
+        this.clave = (clave);
     }
 
     public Rol getRol() {
@@ -95,6 +100,42 @@ public class Persona implements Serializable{
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+    public static void removerPersona(String filename, Persona per)
+    {
+        ArrayList<Persona> personas = new ArrayList<>();
+        personas = Util.readPersonasFile(filename);
+        
+        ArrayList<Persona> nuevasPer = new ArrayList<>();
+        
+        for(Persona p: personas)
+        {
+            if(p.getCorreo().equals(per.getCorreo()))
+            {
+               //No se agrega a la lista
+            }
+            else
+            {
+                nuevasPer.add(p);
+            }
+        }
+
+        
+        
+        try(ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(filename)))
+        {    
+            outStream.writeObject(nuevasPer);
+            outStream.close();
+        }
+        catch(FileNotFoundException fnfe)
+        {
+            fnfe.printStackTrace();
+        }
+        catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+            //ioe.printStackTrace();
+        }
     }
    
 }

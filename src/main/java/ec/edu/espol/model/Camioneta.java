@@ -62,7 +62,7 @@ public class Camioneta extends Vehiculo implements Serializable
     }
     
    
-    public static void registrarCamioneta(ScrollPane sp){
+    /*public static void registrarCamioneta(ScrollPane sp){
         double wrappingW = 150;
         VBox vbox= new VBox();
         vbox.setAlignment(Pos.CENTER);
@@ -191,5 +191,5 @@ public class Camioneta extends Vehiculo implements Serializable
             Util.mostrarLlenar();
         }
         });
-    }
+    }*/
 }

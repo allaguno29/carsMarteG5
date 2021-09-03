@@ -18,6 +18,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -133,6 +134,7 @@ public class Oferta implements Serializable,Comparable<Oferta>
             //ioe.printStackTrace();
         }
     }
+    
     public static void realizarOferta(ScrollPane sp, String user){
         ArrayList <String> tipos = new ArrayList<> ();
         tipos.add("Todos");
@@ -188,34 +190,49 @@ public class Oferta implements Serializable,Comparable<Oferta>
                 double recorridop= Double.parseDouble(recorrido.getText());
                 int añop= Integer.parseInt(año.getText());
                 double preciop= Double.parseDouble(precio.getText());
-            ArrayList<Vehiculo> vehiculos = new ArrayList <>();
-            String item = (String)tipo.getValue();
-            if (item.equals("Todos"))
-                vehiculos=Util.readVehiclesFile("vehiculos.ser");
-            if(item.equals("Moto"))
-                vehiculos= Util.readVehiclesFile("motos.ser");
-            if(item.equals("Auto"))
-                vehiculos= Util.readVehiclesFile("autos.ser");
-            if(item.equals("Camioneta"))
-                vehiculos= Util.readVehiclesFile("camionetas.ser");
-            for(Vehiculo v:vehiculos){
-                double x= recorridop - v.getRecorrido();
-                double y = añop - v.getAño();
-                double z = preciop - v.getPrecio();
-                double distancia = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2)+Math.pow(z, 2));
-                v.setPrioridad(distancia);
-            }
+                ArrayList<Vehiculo> vehiculos = new ArrayList <>();
+                String item = (String)tipo.getValue();
+                if (item.equals("Todos"))
+                    vehiculos=Util.readVehiclesFile("vehiculos.ser");
+                if(item.equals("Moto"))
+                    vehiculos= Util.readVehiclesFile("motos.ser");
+                if(item.equals("Auto"))
+                    vehiculos= Util.readVehiclesFile("autos.ser");
+                if(item.equals("Camioneta"))
+                    vehiculos= Util.readVehiclesFile("camionetas.ser");
+                for(Vehiculo v:vehiculos)
+                {
+                    double x= recorridop - v.getRecorrido();
+                    double y = añop - v.getAño();
+                    double z = preciop - v.getPrecio();
+                    double distancia = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2)+Math.pow(z, 2));
+                    v.setPrioridad(distancia);
+                }
             vehiculos.sort((Vehiculo v1, Vehiculo v2)->Double.compare(v1.getPrioridad(),v2.getPrioridad()));
                 
             ///////////////////////////////////////////////////////////////////////////////
             vbox.getChildren().clear();
             for(Vehiculo v:vehiculos){
                 HBox hbox = new HBox();
-                Image foto= new Image("img/"+v.getPlaca()+".jpg");
+                hbox.setSpacing(25);
+                VBox minibox = new VBox();
+                
+                File imgfile = new File("images/"+v.getPlaca()+".jpg");
+                Image foto= new Image("file:" + imgfile.getAbsolutePath());
+                
+                
                 ImageView im= new ImageView(foto);
-                Text precios= new Text("$"+v.getPrecio());
-                Text años= new Text(""+v.getAño());
-                Text recorridos= new Text(v.getRecorrido()+"km");
+                im.setFitWidth(140);
+                im.setFitHeight(100);
+                
+                Text precios= new Text("Precio:  $"+v.getPrecio());
+                minibox.getChildren().add(precios);
+                Text años= new Text("Año: "+v.getAño());
+                minibox.getChildren().add(años);
+                Text recorridos= new Text("Recorrido:  " + v.getRecorrido()+"km");
+                minibox.getChildren().add(recorridos);
+                minibox.setAlignment(Pos.CENTER);
+                
                 Button boton= new Button();
                 boton.setText("Ofertar");
                 boton.setOnMouseClicked((MouseEvent event)->{
@@ -223,7 +240,7 @@ public class Oferta implements Serializable,Comparable<Oferta>
                     vbox.setAlignment(Pos.CENTER);
                     Button botono = new Button("Ofertar");
                     vbox.getChildren().add(im);
-                    Text placav= new Text("placa: "+v.getPlaca());
+                    Text placav= new Text("Placa: "+v.getPlaca());
                     Text marcav= new Text("Marca: "+v.getMarca());
                     Text combustiblev= new Text("Combustible: "+v.getCombustible());
                     Text colorv= new Text("Color: "+v.getColor());
@@ -260,10 +277,10 @@ public class Oferta implements Serializable,Comparable<Oferta>
                                  Util.mostrarWarning("ERROR AL LLENAR CAMPOS", "Año solo permite numeros enteros y recorrido y precio solo permite decimales.");} 
                     });
                 });
+                
+                vbox.setPadding(new Insets(45, 0, 0, 25));
                 hbox.getChildren().add(im);
-                hbox.getChildren().add(precios);
-                hbox.getChildren().add(años);
-                hbox.getChildren().add(recorridos);
+                hbox.getChildren().add(minibox);
                 hbox.getChildren().add(boton);
                 vbox.getChildren().add(hbox);
         }

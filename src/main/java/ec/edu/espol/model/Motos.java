@@ -30,7 +30,8 @@ public class Motos extends Vehiculo implements Serializable{
     public Motos(String placa, String marca, String modelo, String motor, int año, double recorrido, String color, String combustible, double precio) {
         super(placa, marca, modelo, motor, año, recorrido, color, combustible, precio);
     }
-    public static void registrarMoto(ScrollPane sp){
+    /*
+public static void registrarMoto(ScrollPane sp){
         double wrappingW = 150;
         VBox vbox= new VBox();
         vbox.setAlignment(Pos.CENTER);
@@ -133,7 +134,9 @@ public class Motos extends Vehiculo implements Serializable{
         }else{
             Util.mostrarLlenar();}
         });
-    }
+    } 
+    
+    */
 }
     
   

@@ -28,6 +28,9 @@
             <Button fx:id="btnComp2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#botonRealizarOferta" prefHeight="45.0" prefWidth="180.0" text="Realizar una oferta" />
             <Button fx:id="salirbtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#salir" prefHeight="45.0" prefWidth="180.0" text="Salir" />
          </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
       </VBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="420.0">
@@ -36,79 +39,79 @@
                <content>
                   <VBox fx:id="vboxexpoveh" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <HBox fx:id="plabox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="plabox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="plabox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Placa" wrappingWidth="80.0" />
                               <TextField fx:id="plabox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="marbox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="marbox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="marbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca:" wrappingWidth="80.0" />
                               <TextField fx:id="marbox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="modbox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="modbox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="modbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo:" wrappingWidth="80.0" />
                               <TextField fx:id="modbox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="tmotorbox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="tmotorbox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="tmotor_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de motor:" wrappingWidth="80.0" />
                               <TextField fx:id="tmotorbox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="aniobox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="aniobox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="aniobox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Año vehículo:" wrappingWidth="80.0" />
                               <TextField fx:id="aniobox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="recorbox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="recorbox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="recorbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Recorrido:" wrappingWidth="80.0" />
                               <TextField fx:id="recorbox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="tcombox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="tcombox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="tcombox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo combustible:" wrappingWidth="80.0" />
                               <TextField fx:id="tcombox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="colbox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="colbox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="colbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Color:" wrappingWidth="80.0" />
                               <TextField fx:id="colbox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="vidbox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="vidbox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="vidbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de vidrios:" wrappingWidth="80.0" />
                               <TextField fx:id="vidbox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="transbox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="transbox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="transbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Transmisión:" wrappingWidth="80.0" />
                               <TextField fx:id="transbox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="tracbox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="tracbox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="tracbox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Tracción:" wrappingWidth="80.0" />
                               <TextField fx:id="tracbox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="prebox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="prebox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Text fx:id="prebox_t" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio:" wrappingWidth="80.0" />
                               <TextField fx:id="prebox_tf" />
                            </children>
                         </HBox>
-                        <HBox fx:id="fotobox" prefHeight="45.0" prefWidth="200.0">
+                        <HBox fx:id="fotobox" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Button fx:id="fotobox_btn" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Subir Foto">
                                  <HBox.margin>
@@ -125,10 +128,16 @@
                         </Button>
                      </children>
                      <padding>
-                        <Insets left="20.0" />
+                        <Insets left="40.0" />
                      </padding>
                   </VBox>
-               </content></ScrollPane>
+               </content>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding></ScrollPane>
          </center>
       </BorderPane>
    </children>

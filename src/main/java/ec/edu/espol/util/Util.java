@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
         
 import java.util.*;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -41,7 +42,6 @@ import javax.activation.*;
  */
 public class Util {
     
-    //public final String stylesheet = "style/style.css"; 
     
     public static boolean placaEsValida(String nomfile,String placa)
     {
@@ -233,7 +233,8 @@ public class Util {
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
             
-           System.out.println("Mensaje enviado exitosamente!!");
+           Alert a = new Alert(AlertType.INFORMATION,"Mensaje enviado exitosamente a:" + correo);
+           a.show();
         } 
         catch (MessagingException mex) {
            throw mex;
@@ -256,39 +257,5 @@ public class Util {
         alert.showAndWait();
     } 
      
-    /*public static void pedirFoto(Button selBtn)    
-    {
-        
-        selBtn.setOnMouseClicked(evento -> { 
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Buscar Imagen");
-
-            // Agregar filtros para facilitar la busqueda
-            fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("All Images", "*.*"),
-                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                    new FileChooser.ExtensionFilter("PNG", "*.png")
-            );
-            
-            //hbox.getChildren().add(imagen);
-            // Obtener la imagen seleccionada
-            Window owner = Stage.getWindows().stream().filter(Window::isShowing).findFirst().orElse(null);
-            File imgFile = fileChooser.showOpenDialog(owner);
-            
-            
-            // Mostar la imagen
-            if (imgFile != null) {
-                Image img = new Image("file:" + imgFile.getAbsolutePath());
-                tf.setText(img.getUrl());
-                veh.setFoto(img);
-                
-            }
-            else
-            {
-                mostrarWarning("Error", "Foto no encontrada");
-            }
-        });
-        
-
-    }*/
+    
 }
