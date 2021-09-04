@@ -33,6 +33,7 @@ public class App extends Application
         scene = new Scene(loadFXML("Login"));
         scene.getStylesheets().add(css);
         stage.setHeight(600);
+        stage.setWidth(750);
         stage.setScene(scene);
         stage.show();
     }
