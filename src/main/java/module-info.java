@@ -5,6 +5,7 @@ module ec.edu.espol.vendedorcarrosg5 {
 
     opens ec.edu.espol.vendedorcarrosg5 to javafx.fxml;
     opens ec.edu.espol.controller to javafx.fxml;
+    
     exports ec.edu.espol.vendedorcarrosg5;
     exports ec.edu.espol.controller;
     requires java.mail;

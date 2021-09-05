@@ -295,10 +295,17 @@ public class Vehiculo implements Serializable{
             vehiculos.add(this);    
             outStream.writeObject(vehiculos);
             outStream.close();
-        }
+        }        
         catch(FileNotFoundException fnfe)
         {
-            fnfe.printStackTrace();
+            File f = new File(filename);
+            try {
+                f.createNewFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            System.out.println("Se ha creado el archivo");
+            //fnfe.printStackTrace();
         }
         catch(IOException ioe)
         {

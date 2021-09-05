@@ -6,6 +6,7 @@
 package ec.edu.espol.model;
 import ec.edu.espol.util.Rol;
 import ec.edu.espol.util.Util;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -126,10 +127,17 @@ public class Persona implements Serializable{
         {    
             outStream.writeObject(nuevasPer);
             outStream.close();
-        }
+        }        
         catch(FileNotFoundException fnfe)
         {
-            fnfe.printStackTrace();
+            File f = new File(filename);
+            try {
+                f.createNewFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            System.out.println("Se ha creado el archivo");
+            //fnfe.printStackTrace();
         }
         catch(IOException ioe)
         {

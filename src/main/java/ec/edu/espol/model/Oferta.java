@@ -87,10 +87,17 @@ public class Oferta implements Serializable,Comparable<Oferta>
             ofertas.add(this);    
             outStream.writeObject(ofertas);
             outStream.close();
-        }
+        }        
         catch(FileNotFoundException fnfe)
         {
-            fnfe.printStackTrace();
+            File f = new File(filename);
+            try {
+                f.createNewFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            System.out.println("Se ha creado el archivo");
+            //fnfe.printStackTrace();
         }
         catch(IOException ioe)
         {
