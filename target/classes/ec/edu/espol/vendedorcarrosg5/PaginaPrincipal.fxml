@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controller.PaginaPrincipalController">
+<HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controller.PaginaPrincipalController">
    <children>
-      <VBox id="navigator" fx:id="panelBotones" minHeight="-Infinity" prefHeight="600.0" prefWidth="180.0">
+      <VBox id="navigator" fx:id="panelBotones" minHeight="-Infinity" prefHeight="600.0">
          <children>
             <ImageView fx:id="btnImage" fitHeight="190.0" fitWidth="180.0" onMouseClicked="#mostrarPerfil" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,9 +33,9 @@
          </HBox.margin>
       </VBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="420.0">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0">
          <center>
-            <ScrollPane fx:id="scrollpane" fitToHeight="true" fitToWidth="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="420.0" BorderPane.alignment="CENTER">
+            <ScrollPane fx:id="scrollpane" fitToHeight="true" fitToWidth="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" BorderPane.alignment="CENTER">
                <content>
                   <VBox fx:id="vboxexpoveh" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -133,7 +133,7 @@
                   </VBox>
                </content>
                <BorderPane.margin>
-                  <Insets />
+                  <Insets left="60.0" />
                </BorderPane.margin>
                <padding>
                   <Insets bottom="20.0" top="20.0" />
