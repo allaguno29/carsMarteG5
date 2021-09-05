@@ -137,6 +137,152 @@ public class Vehiculo implements Serializable{
         this.prioridad = prioridad;  
     }  
     
+    public static void removerVehiculo(String placa) throws IOException
+    {
+        String filename = "autos.ser";
+        ArrayList<Vehiculo> vehs = Util.readVehiclesFile(filename);
+        
+        ArrayList<Vehiculo> vehsMod = new ArrayList<>();
+        
+        for(Vehiculo o : vehs)
+        {
+            if(o.getPlaca().equals(placa))
+            {
+               
+            }
+            else
+            {
+                vehsMod.add(o);
+            }
+        }
+
+        
+        
+        try(ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(filename)))
+        {    
+            outStream.writeObject(vehsMod);
+            outStream.close();
+        }
+        catch(FileNotFoundException fnfe)
+        {
+            File f = new File(filename);
+            f.createNewFile();
+            System.out.println("Se ha creado el archivo");
+            //fnfe.printStackTrace();
+        }
+        catch(IOException ioe)
+        {
+            //ioe.printStackTrace();
+        }
+        filename = "camionetas.ser";
+        vehs = Util.readVehiclesFile(filename);
+        
+        vehsMod = new ArrayList<>();
+        
+        for(Vehiculo o : vehs)
+        {
+            if(o.getPlaca().equals(placa))
+            {
+               
+            }
+            else
+            {
+                vehsMod.add(o);
+            }
+        }
+
+        
+        
+        try(ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(filename)))
+        {    
+            outStream.writeObject(vehsMod);
+            outStream.close();
+        }
+        catch(FileNotFoundException fnfe)
+        {
+            File f = new File(filename);
+            f.createNewFile();
+            System.out.println("Se ha creado el archivo");
+            //fnfe.printStackTrace();
+        }
+        catch(IOException ioe)
+        {
+            //ioe.printStackTrace();
+        }
+        
+        filename = "motos.ser";
+        vehs = Util.readVehiclesFile(filename);
+        
+        vehsMod = new ArrayList<>();
+        
+        for(Vehiculo o : vehs)
+        {
+            if(o.getPlaca().equals(placa))
+            {
+               
+            }
+            else
+            {
+                vehsMod.add(o);
+            }
+        }
+
+        
+        
+        try(ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(filename)))
+        {    
+            outStream.writeObject(vehsMod);
+            outStream.close();
+        }
+        catch(FileNotFoundException fnfe)
+        {
+            File f = new File(filename);
+            f.createNewFile();
+            System.out.println("Se ha creado el archivo");
+            //fnfe.printStackTrace();
+        }
+        catch(IOException ioe)
+        {
+            //ioe.printStackTrace();
+        }
+        filename = "vehiculos.ser";
+        vehs = Util.readVehiclesFile(filename);
+        
+        vehsMod = new ArrayList<>();
+        
+        for(Vehiculo o : vehs)
+        {
+            if(o.getPlaca().equals(placa))
+            {
+               
+            }
+            else
+            {
+                vehsMod.add(o);
+            }
+        }
+
+        
+        
+        try(ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(filename)))
+        {    
+            outStream.writeObject(vehsMod);
+            outStream.close();
+        }
+        catch(FileNotFoundException fnfe)
+        {
+            File f = new File(filename);
+            f.createNewFile();
+            System.out.println("Se ha creado el archivo");
+            //fnfe.printStackTrace();
+        }
+        catch(IOException ioe)
+        {
+            //ioe.printStackTrace();
+        }
+    
+    }
+
     //FUNCION LISTA - LOGICA PARALELA NO DEBERIA DAR PROBLEMAS
     public void saveFile(String filename)
     {

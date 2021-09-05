@@ -699,14 +699,25 @@ public class PaginaPrincipalController implements Initializable
                 
                 Button boton= new Button();
                 boton.setText("Aceptar");
-                boton.setOnMouseClicked((MouseEvent evento)->{
-                    Oferta.removerOferta("ofertas.ser", o);
+                boton.setOnMouseClicked((MouseEvent evento)->
+                {
+                  
+                    Thread t = new Thread(()-> {
+                        Oferta.removerOferta("ofertas.ser", o);
                     try {
                         Util.enviarCorreo(o.getCorreo(),usuario.getCorreo());
                     } 
-                    catch (MessagingException ex) {
-                        Util.mostrarWarning("ERROR DE MENSAJERIA",ex.getMessage());
+                    catch (MessagingException ex) 
+                    {
+                        ex.printStackTrace();
+                        //Util.mostrarWarning("ERROR DE MENSAJERIA",ex.getMessage());
                     }
+                    
+                    });
+                    
+                    t.start();
+                    Alert a = new Alert(AlertType.INFORMATION, "Mensaje enviado satisfactoriamente");
+                    a.show();
                     scrollpane.setContent(null);
                     //this.botonAceptarOfertas(event);
                 });

@@ -101,6 +101,14 @@ public class Oferta implements Serializable,Comparable<Oferta>
    
     public static void removerOferta(String filename, Oferta oferta) 
     {
+        try 
+        {
+            Vehiculo.removerVehiculo(oferta.getPlaca());
+        } 
+        catch (IOException ex) 
+        {
+            ex.printStackTrace();
+        }
         ArrayList<Oferta> ofertas = new ArrayList<>();
         ofertas = Util.readOfertasFile(filename);
         

@@ -233,8 +233,7 @@ public class Util {
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
             
-           Alert a = new Alert(AlertType.INFORMATION,"Mensaje enviado exitosamente a:" + correo);
-           a.show();
+           System.out.println("Correo enviado");
         } 
         catch (MessagingException mex) {
            throw mex;
